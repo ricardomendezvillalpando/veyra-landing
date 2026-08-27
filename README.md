@@ -2,9 +2,12 @@
 
 Landing page del producto **Veyra**.
 
+- **Repo:** https://github.com/ricardomendezvillalpando/veyra-landing
+- **Producción:** https://veyra-landing-phi.vercel.app
+
 Documentación de producto: [`../docs/`](../docs/)  
 Avance: [`../docs/progress/LANDING.md`](../docs/progress/LANDING.md)  
-Logo oficial: `public/brand/veyra-wordmark.png` → componente `src/components/Logo.tsx`
+Logo oficial: `public/brand/veyra-wordmark.svg` → componente `src/components/Logo.tsx`
 
 ## Desarrollo
 
