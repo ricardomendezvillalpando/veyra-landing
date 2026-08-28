@@ -1,37 +1,29 @@
-import { ArchitectureFlow } from "@/components/ArchitectureFlow";
-import { BiometricMethods } from "@/components/BiometricMethods";
+import { Benefits } from "@/components/Benefits";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
-import { HowItWorks } from "@/components/HowItWorks";
+import { Integrations } from "@/components/Integrations";
 import { Interest } from "@/components/Interest";
-import { Platform } from "@/components/Platform";
-import { ProcessAnimation } from "@/components/ProcessAnimation";
 import { Security } from "@/components/Security";
-import { Testimonials } from "@/components/Testimonials";
-import { VerificationFlow } from "@/components/VerificationFlow";
-import { Verticals } from "@/components/Verticals";
-import { Vision } from "@/components/Vision";
+import { SeeInAction } from "@/components/SeeInAction";
+import { Testimonial } from "@/components/Testimonial";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
 
 export default function Home() {
   return (
-    <div className="atmosphere relative min-h-screen overflow-x-hidden">
+    <div className="relative min-h-screen overflow-x-hidden bg-background">
       <Header />
       <main>
         <Hero />
-        <Vision />
-        <ProcessAnimation />
-        <ArchitectureFlow />
-        <VerificationFlow />
-        <BiometricMethods />
-        <HowItWorks />
-        <Platform />
+        <Benefits />
+        <SeeInAction />
         <Security />
-        <Verticals />
-        <Testimonials />
+        <Testimonial />
+        <Integrations />
         <Interest />
       </main>
       <Footer />
+      <WhatsAppFab />
     </div>
   );
 }

@@ -16,8 +16,8 @@ export function Interest() {
   }
 
   return (
-    <section id="interes" className="border-t border-border py-20 md:py-28">
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
+    <section id="interes" className="border-t border-border py-20 pb-28 md:py-28 md:pb-28">
+      <div className="mx-auto max-w-5xl px-5 md:px-8">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -25,15 +25,13 @@ export function Interest() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.55 }}
           >
-            <p className="text-xs font-medium uppercase tracking-[0.28em] text-accent">
-              Interés
-            </p>
-            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-              Sé de los primeros.
+            <h2 className="font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+              Lleva Veyra a tu negocio.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
-              Estamos construyendo el piloto en México. Déjanos tus datos y te
-              contactamos para probar Veyra o llevarlo a tu negocio.
+              Estamos abriendo el piloto en México. Cuéntanos de tu operación y
+              te mostramos cómo presencia puede subir tu conversión, bajar
+              tiempos de caja y mejorar la experiencia de tus clientes.
             </p>
           </motion.div>
 
@@ -42,9 +40,9 @@ export function Interest() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.55, delay: 0.06 }}
-            className="rounded-2xl border border-border bg-surface-elevated/80 p-6 md:p-8"
+            className="rounded-2xl border border-border bg-surface p-6 shadow-sm md:p-8"
           >
-            <div className="flex gap-2 rounded-full bg-surface p-1">
+            <div className="flex gap-2 rounded-full bg-mist p-1">
               <button
                 type="button"
                 onClick={() => {
@@ -57,7 +55,7 @@ export function Interest() {
                     : "text-muted hover:text-foreground"
                 }`}
               >
-                Quiero probar
+                Quiero ver cómo funciona
               </button>
               <button
                 type="button"
@@ -71,13 +69,13 @@ export function Interest() {
                     : "text-muted hover:text-foreground"
                 }`}
               >
-                Soy un negocio
+                Tengo un negocio
               </button>
             </div>
 
             {submitted ? (
               <p className="mt-10 text-center text-sm leading-relaxed text-platinum">
-                Gracias. Te contactaremos pronto.
+                Recibido. Te contactamos pronto para agendar tu demo.
               </p>
             ) : (
               <form onSubmit={onSubmit} className="mt-8 grid gap-4">
@@ -115,11 +113,11 @@ export function Interest() {
 
                 <button
                   type="submit"
-                  className="mt-2 inline-flex h-12 items-center justify-center rounded-full bg-accent text-sm font-semibold text-accent-foreground transition hover:brightness-110"
+                  className="btn-primary mt-2 h-12 text-sm"
                 >
                   {intent === "business"
-                    ? "Quiero Veyra en mi negocio"
-                    : "Quiero probar Veyra"}
+                    ? "Agendar demo para mi negocio"
+                    : "Quiero conocer Veyra"}
                 </button>
               </form>
             )}
