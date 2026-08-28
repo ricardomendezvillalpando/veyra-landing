@@ -50,7 +50,7 @@ export function SeeInAction() {
             controls={playing}
             preload="metadata"
             poster="/brand/veyra-checkout-palm.png"
-            muted={reduce}
+            muted={!!reduce}
             onPlay={() => setPlaying(true)}
           >
             <source src="/brand/veyra-demo.mp4" type="video/mp4" />
