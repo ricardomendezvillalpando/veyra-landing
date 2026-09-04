@@ -1,12 +1,11 @@
-import { Benefits } from "@/components/Benefits";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
-import { Integrations } from "@/components/Integrations";
 import { Interest } from "@/components/Interest";
+import { Pricing } from "@/components/Pricing";
+import { PresenceLoop } from "@/components/PresenceLoop";
 import { Security } from "@/components/Security";
-import { SeeInAction } from "@/components/SeeInAction";
-import { Testimonial } from "@/components/Testimonial";
+import { UseCases } from "@/components/UseCases";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 
 export default function Home() {
@@ -15,11 +14,10 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <Benefits />
-        <SeeInAction />
+        <UseCases />
+        <PresenceLoop />
+        <Pricing />
         <Security />
-        <Testimonial />
-        <Integrations />
         <Interest />
       </main>
       <Footer />

@@ -37,17 +37,17 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Veyra — Checkout y acceso con presencia",
+  title: "Veyra — Paga y entra con tu palma",
   description:
-    "Lleva pagos biométricos y acceso a tu negocio. Menos filas, más conversión y una experiencia que diferencia tu marca. Demo para operadores en México.",
+    "Sin tarjeta ni teléfono en la caja. Acerca la palma y listo. Ideal para cafés, retail, gyms y hoteles en México.",
   icons: {
     icon: [{ url: "/brand/veyra-wordmark.svg", type: "image/svg+xml" }],
     apple: [{ url: "/brand/veyra-wordmark.png" }],
   },
   openGraph: {
-    title: "Veyra — Checkout y acceso con presencia",
+    title: "Veyra — Paga y entra con tu palma",
     description:
-      "Más velocidad en caja, mejor captación y una experiencia premium. Agenda una demo para tu negocio.",
+      "Cobras más rápido. Tus clientes se van feliz. La mano es la nueva forma de pagar.",
     type: "website",
     locale: "es_MX",
     siteName: "Veyra",
@@ -57,15 +57,15 @@ export const metadata: Metadata = {
         url: "/brand/veyra-checkout-palm.png",
         width: 1200,
         height: 675,
-        alt: "Veyra — pago con la palma",
+        alt: "Pagar con la palma usando Veyra",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Veyra — Checkout y acceso con presencia",
+    title: "Veyra — Paga y entra con tu palma",
     description:
-      "Más velocidad en caja, mejor captación y una experiencia premium. Agenda una demo para tu negocio.",
+      "Cobras más rápido. Tus clientes se van feliz. La mano es la nueva forma de pagar.",
     images: ["/brand/veyra-checkout-palm.png"],
   },
 };

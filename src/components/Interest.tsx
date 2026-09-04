@@ -16,8 +16,8 @@ export function Interest() {
   }
 
   return (
-    <section id="interes" className="border-t border-border py-20 pb-28 md:py-28 md:pb-28">
-      <div className="mx-auto max-w-5xl px-5 md:px-8">
+    <section id="interes" className="border-t border-border py-20 pb-28 md:py-28">
+      <div className="mx-auto max-w-6xl px-5 md:px-8">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -25,13 +25,12 @@ export function Interest() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.55 }}
           >
-            <h2 className="font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-              Lleva Veyra a tu negocio.
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+              ¿Listo para cobrar (o pagar) con la palma?
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
-              Estamos abriendo el piloto en México. Cuéntanos de tu operación y
-              te mostramos cómo presencia puede subir tu conversión, bajar
-              tiempos de caja y mejorar la experiencia de tus clientes.
+              Si tienes un negocio, agenda una demo. Si quieres ser de los
+              primeros en pagar con la mano, déjanos tus datos y te avisamos.
             </p>
           </motion.div>
 
@@ -55,7 +54,7 @@ export function Interest() {
                     : "text-muted hover:text-foreground"
                 }`}
               >
-                Quiero ver cómo funciona
+                Quiero pagar con la mano
               </button>
               <button
                 type="button"
@@ -116,8 +115,8 @@ export function Interest() {
                   className="btn-primary mt-2 h-12 text-sm"
                 >
                   {intent === "business"
-                    ? "Agendar demo para mi negocio"
-                    : "Quiero conocer Veyra"}
+                    ? "Quiero Veyra en mi negocio"
+                    : "Quiero pagar con la mano"}
                 </button>
               </form>
             )}

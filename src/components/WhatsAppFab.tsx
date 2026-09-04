@@ -4,7 +4,7 @@ const WHATSAPP_NUMBER =
   process.env.NEXT_PUBLIC_VEYRA_WHATSAPP ?? "524424652713";
 
 const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Hola, me interesa una demo de Veyra para mi negocio.",
+  "Hola, quiero Veyra en mi negocio. ¿Me pueden contar cómo empezar?",
 );
 
 export function WhatsAppFab() {

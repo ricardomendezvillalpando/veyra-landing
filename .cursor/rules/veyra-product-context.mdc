@@ -1,0 +1,65 @@
+---
+description: Veyra product north star, architecture, pricing and agent UX — always apply when working on this repo
+alwaysApply: true
+---
+
+# Veyra — Product Context (source of truth)
+
+Full document: `docs/VEYRA_CONTEXT.md` (also in `veyra/docs/VEYRA_CONTEXT.md`).
+
+## North star
+
+> **Veyra is the identity agent for the physical world.**
+
+```text
+Presence → Identity → Authorization → Action
+```
+
+Veyra is **not** primarily a payment terminal. Palm payment is the first PoC use case — not the product limit.
+
+Credentials (palm first; face/voice later) → **Veyra ID** → policy/risk → **Action** (PAY, ACCESS, CHECK-IN, VERIFY, ATTENDANCE, CUSTOM).
+
+## Abstractions providers (never couple domain)
+
+- Biometrics behind `BiometricDevice` (first Chinese palm reader is replaceable)
+- Payments behind `PaymentProvider` (Stripe first; Adyen/Conekta later)
+- Voice behind abstraction (ElevenLabs preferred for experiments)
+- Realtime/agent UI inspired by LiveKit Agents UI — not domain core
+
+## First PoC loop
+
+```text
+Demo POS → $10 MXN → Veyra Terminal → ✋ → Veyra ID → PSP → APPROVED → POS PAID
+```
+
+Prove `Palm → Veyra ID → Authorized Action` before payment coupling. Milestones M0–M5 in context doc. Agent UI/voice only after action state machine is reliable.
+
+## Surfaces
+
+Consumer app · Terminal (states: IDLE→…→SPEAKING→COMPLETE) · Merchant Console · Platform · SDK/API (`POST /v1/actions`).
+
+## Commercial model (working hypothesis — not final)
+
+**Hardware-as-a-Service + recurring subscription + usage/transaction economics.**
+
+| Plan | Activation | Subscription | Notes |
+|------|------------|--------------|-------|
+| Start | ~MXN $1,499 | ~MXN $499/mo | Standalone device |
+| Business | ~MXN $999 | ~MXN $799/mo | POS integration |
+| Enterprise | Custom | Custom | API/SDK/OEM |
+
+Hardware ref cost ~MXN $4,200. Do not scale inventory before PoC/unit economics. $300/mo alone is too low for payback.
+
+Other revenue: activation, rental/comodato, per-tx / bps, PSP share, per verify/access, enterprise.
+
+## Landing / brand UX direction
+
+- Formal biometric trust (not playful fintech gimmicks)
+- Show **palm reader + voice agent** together (terminal agent states, ambient visualizer)
+- Visual references: [ElevenLabs](https://elevenlabs.io/) (clean, dark, professional) + [LiveKit Agents UI](https://livekit.com/products/agents-ui) (listening/speaking/thinking)
+- Spanish B2B copy for Mexico operators
+- Preserve modular monolith direction; inspect before large refactors
+
+## Execution rule
+
+Read `docs/VEYRA_CONTEXT.md` before major product/architecture work. Prefer smallest increment to prove the loop. Wait for approval before large refactors outside explicitly requested surfaces (e.g. landing redesign).
