@@ -13,24 +13,28 @@ const STATES = [
     id: "speaking",
     label: "Te habla",
     line: "Son ochocientos cincuenta pesos. Acerca tu palma para pagar.",
+    audio: "/brand/voice/hero-01-speaking.mp3",
     orb: "speaking" as const,
   },
   {
     id: "sensing",
     label: "Lee tu palma",
     line: "Mantén la mano un segundo… casi listo.",
+    audio: "/brand/voice/hero-02-sensing.mp3",
     orb: "sensing" as const,
   },
   {
     id: "thinking",
     label: "Te reconoce",
     line: "Ya eres tú. Confirmando el pago…",
+    audio: "/brand/voice/hero-03-thinking.mp3",
     orb: "thinking" as const,
   },
   {
     id: "complete",
     label: "Listo",
     line: "¡Pago aprobado! Gracias.",
+    audio: "/brand/voice/hero-04-complete.mp3",
     orb: "complete" as const,
   },
 ];
@@ -40,6 +44,7 @@ export function Hero() {
   const [step, setStep] = useState(0);
   const [listening, setListening] = useState(false);
   const pointerRef = useRef<Pointer | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     if (reduce || listening) return;
@@ -49,19 +54,34 @@ export function Hero() {
     return () => window.clearInterval(id);
   }, [reduce, listening]);
 
+  useEffect(() => {
+    return () => {
+      audioRef.current?.pause();
+      audioRef.current = null;
+    };
+  }, []);
+
   const current = STATES[step];
   const sensing = current.id === "sensing";
 
   function speakLine() {
-    if (typeof window === "undefined" || !window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
-    const utter = new SpeechSynthesisUtterance(current.line);
-    utter.lang = "es-MX";
-    utter.rate = 0.95;
+    if (typeof window === "undefined") return;
+
+    audioRef.current?.pause();
+    const audio = new Audio(current.audio);
+    audioRef.current = audio;
     setListening(true);
-    utter.onend = () => setListening(false);
-    utter.onerror = () => setListening(false);
-    window.speechSynthesis.speak(utter);
+
+    const done = () => {
+      if (audioRef.current === audio) {
+        setListening(false);
+        audioRef.current = null;
+      }
+    };
+
+    audio.addEventListener("ended", done);
+    audio.addEventListener("error", done);
+    void audio.play().catch(done);
   }
 
   return (
