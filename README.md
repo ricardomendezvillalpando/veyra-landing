@@ -23,4 +23,4 @@ Next.js · TypeScript · Tailwind v4 · Framer Motion · Vercel Analytics
 
 ## Monorepo
 
-This package lives under `veyra/landing`. Sibling packages: `mobile`, `web-app`, `api`, `device`.
+This package lives under `veyra/landing`. Sibling packages: `mobile`, `merchant`, `admin`, `api`, `device`.
