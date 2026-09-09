@@ -127,7 +127,7 @@ export function Logo({
         {/* Letter A */}
         <span
           className={`veyra-a-letter absolute inset-0 flex items-center justify-center transition-all duration-[450ms] ease-out ${
-            showLetter && phase !== "toMark"
+            showLetter
               ? "opacity-100 scale-100"
               : "opacity-0 scale-90 pointer-events-none"
           }`}
