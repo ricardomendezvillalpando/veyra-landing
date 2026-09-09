@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Veyra — Product Context (source of truth)
 
-Full document: `docs/VEYRA_CONTEXT.md` (also in `veyra/docs/VEYRA_CONTEXT.md`).
+Full document: `docs/VEYRA_CONTEXT.md` (workspace root). Brand system: `docs/VEYRA_BRAND.md` — shared by landing, mobile, merchant, admin, device.
 
 ## North star
 
@@ -55,7 +55,7 @@ Other revenue: activation, rental/comodato, per-tx / bps, PSP share, per verify/
 ## Landing / brand UX direction
 
 - Formal biometric trust (not playful fintech gimmicks)
-- **Locked palette:** soft-dark charcoal (`#141414`), not pure black/white — see `docs/VEYRA_BRAND.md` (same system for hardware)
+- **Locked palette (all products):** soft-dark charcoal (`#141414`), teal `#1A6B5C`, signal `#22C55E` — see `docs/VEYRA_BRAND.md` (landing, mobile, merchant, admin, device)
 - Show **palm reader + voice agent** together (terminal agent states, ambient visualizer)
 - Visual references: [ElevenLabs](https://elevenlabs.io/) (clean, dark, professional) + [LiveKit Agents UI](https://livekit.com/products/agents-ui) (listening/speaking/thinking)
 - Spanish B2B copy for Mexico operators
