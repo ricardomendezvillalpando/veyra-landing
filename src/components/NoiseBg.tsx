@@ -7,15 +7,16 @@
 import { useEffect, useRef, type RefObject } from "react";
 import { useReducedMotion } from "framer-motion";
 
-const DENSITY = 1 / 140;
-const MAX_DOTS = 2200;
-const RADIUS = 160;
-const NEIGHBOUR_D = 32;
-const BASE_A = 0.18;
-const PEAK_A = 0.72;
-const LINE_A = 0.12;
-const DOT_RGB = "15, 23, 42";
-const LINE_RGB = "26, 107, 92";
+/* Soft-dark hero: faint grain at rest, soft green links on hover */
+const DENSITY = 1 / 160;
+const MAX_DOTS = 1800;
+const RADIUS = 150;
+const NEIGHBOUR_D = 30;
+const BASE_A = 0.055;
+const PEAK_A = 0.42;
+const LINE_A = 0.11;
+const DOT_RGB = "242, 242, 242";
+const LINE_RGB = "34, 197, 94";
 
 type Dot = { x: number; y: number; b: number };
 type Pair = [Dot, Dot];

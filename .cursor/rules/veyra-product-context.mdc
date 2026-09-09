@@ -55,6 +55,7 @@ Other revenue: activation, rental/comodato, per-tx / bps, PSP share, per verify/
 ## Landing / brand UX direction
 
 - Formal biometric trust (not playful fintech gimmicks)
+- **Locked palette:** soft-dark charcoal (`#141414`), not pure black/white — see `docs/VEYRA_BRAND.md` (same system for hardware)
 - Show **palm reader + voice agent** together (terminal agent states, ambient visualizer)
 - Visual references: [ElevenLabs](https://elevenlabs.io/) (clean, dark, professional) + [LiveKit Agents UI](https://livekit.com/products/agents-ui) (listening/speaking/thinking)
 - Spanish B2B copy for Mexico operators

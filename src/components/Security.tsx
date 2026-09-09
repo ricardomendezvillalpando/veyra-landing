@@ -4,20 +4,20 @@ import { motion } from "framer-motion";
 
 const points = [
   {
-    title: "Tus datos no se venden",
-    body: "La información de tu palma es tuya. No la compartimos ni la usamos para anuncios.",
+    title: "Biometría con propósito claro",
+    body: "Usamos la palma para identificar y autorizar la acción — no para vender datos ni hacer publicidad.",
   },
   {
-    title: "Tú decides",
-    body: "Puedes activar o desactivar Veyra cuando quieras. Control total desde tu teléfono.",
+    title: "Control del titular",
+    body: "Consentimiento, desactivación y derechos ARCO (acceso, rectificación, cancelación y oposición). Tu cliente decide; tú operas con transparencia.",
   },
   {
-    title: "Protección de banco",
-    body: "Cada pago va cifrado, con la misma seriedad que esperas de un método financiero moderno.",
+    title: "Cifrado en cada acción",
+    body: "Los pagos y autorizaciones viajan protegidos, con el rigor que espera un método financiero moderno.",
   },
   {
-    title: "Si cambias de tarjeta, no empiezas de cero",
-    body: "Tu palma te identifica. El método de pago se actualiza aparte — sin volver a registrarte.",
+    title: "Identidad estable, medios flexibles",
+    body: "Si cambia la tarjeta, la identidad permanece. Actualizas el medio de pago sin reiniciar el enrolamiento.",
   },
 ];
 
@@ -31,19 +31,20 @@ export function Security() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-              Seguro para ti. Confiable para tu negocio.
+            <p className="text-sm font-medium text-muted">Seguridad y confianza</p>
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+              Confianza biométrica para clientes y comercios.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
-              Sabemos que pagar con la mano genera preguntas. Por eso diseñamos
-              Veyra para que clientes y comercios se sientan tranquilos desde el
-              primer uso.
+              Identificar con la palma genera preguntas. Por eso Veyra está
+              pensado para que tu operación cumpla y tus clientes se sientan
+              protegidos desde el primer uso.
             </p>
             <a
               href="#interes"
               className="btn-primary mt-8 rounded-full px-7 py-3.5 text-sm"
             >
-              Quiero Veyra en mi negocio
+              Agenda una demo
             </a>
           </motion.div>
 

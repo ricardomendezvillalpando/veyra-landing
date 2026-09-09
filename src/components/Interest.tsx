@@ -11,7 +11,6 @@ export function Interest() {
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // UI-only por ahora; conectaremos waitlist/CRM después.
     setSubmitted(true);
   }
 
@@ -26,11 +25,12 @@ export function Interest() {
             transition={{ duration: 0.55 }}
           >
             <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-              ¿Listo para cobrar (o pagar) con la palma?
+              Agenda una demo de Veyra
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
-              Si tienes un negocio, agenda una demo. Si quieres ser de los
-              primeros en pagar con la mano, déjanos tus datos y te avisamos.
+              Si operas un negocio, te mostramos el flujo completo en tu
+              contexto. Si quieres ser de los primeros en pagar con la palma,
+              déjanos tus datos y te avisamos.
             </p>
           </motion.div>
 
@@ -39,7 +39,7 @@ export function Interest() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.55, delay: 0.06 }}
-            className="rounded-2xl border border-border bg-surface p-6 shadow-sm md:p-8"
+            className="rounded-2xl border border-border bg-surface p-6 md:p-8"
           >
             <div className="flex gap-2 rounded-full bg-mist p-1">
               <button
@@ -50,11 +50,11 @@ export function Interest() {
                 }}
                 className={`flex-1 rounded-full px-4 py-2.5 text-sm font-medium transition ${
                   intent === "consumer"
-                    ? "bg-accent text-accent-foreground"
+                    ? "bg-accent-glow text-cta-foreground"
                     : "text-muted hover:text-foreground"
                 }`}
               >
-                Quiero pagar con la mano
+                Quiero pagar con la palma
               </button>
               <button
                 type="button"
@@ -64,7 +64,7 @@ export function Interest() {
                 }}
                 className={`flex-1 rounded-full px-4 py-2.5 text-sm font-medium transition ${
                   intent === "business"
-                    ? "bg-accent text-accent-foreground"
+                    ? "bg-accent-glow text-cta-foreground"
                     : "text-muted hover:text-foreground"
                 }`}
               >
@@ -74,7 +74,7 @@ export function Interest() {
 
             {submitted ? (
               <p className="mt-10 text-center text-sm leading-relaxed text-platinum">
-                Recibido. Te contactamos pronto para agendar tu demo.
+                Listo. Te contactamos pronto para agendar tu demo.
               </p>
             ) : (
               <form onSubmit={onSubmit} className="mt-8 grid gap-4">
@@ -110,13 +110,10 @@ export function Interest() {
                   </>
                 ) : null}
 
-                <button
-                  type="submit"
-                  className="btn-primary mt-2 h-12 text-sm"
-                >
+                <button type="submit" className="btn-primary mt-2 h-12 text-sm">
                   {intent === "business"
-                    ? "Quiero Veyra en mi negocio"
-                    : "Quiero pagar con la mano"}
+                    ? "Quiero agendar mi demo"
+                    : "Quiero pagar con la palma"}
                 </button>
               </form>
             )}
@@ -150,7 +147,7 @@ function Field({
         type={type}
         required={required}
         autoComplete={autoComplete}
-        className="h-11 w-full rounded-xl border border-border bg-surface px-3.5 text-sm text-foreground outline-none transition placeholder:text-muted/50 focus:border-accent/50"
+        className="h-11 w-full rounded-xl border border-border bg-surface-field px-3.5 text-sm text-foreground outline-none transition placeholder:text-platinum focus:border-accent-glow/50"
       />
     </label>
   );

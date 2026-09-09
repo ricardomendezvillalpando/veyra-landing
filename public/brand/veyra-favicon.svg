@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" role="img" aria-label="Veyra">
+  <rect width="32" height="32" rx="7" fill="#141414"/>
+  <path d="M11 7.5H8.2c-.94 0-1.7.76-1.7 1.7V12" stroke="#F2F2F2" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M21 7.5h2.8c.94 0 1.7.76 1.7 1.7V12" stroke="#F2F2F2" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M21 24.5h2.8c.94 0 1.7-.76 1.7-1.7V20" stroke="#F2F2F2" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M11 24.5H8.2c-.94 0-1.7-.76-1.7-1.7V20" stroke="#F2F2F2" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="16" r="2" fill="#22C55E"/>
+</svg>

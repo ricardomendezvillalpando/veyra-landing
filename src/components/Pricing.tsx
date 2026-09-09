@@ -9,14 +9,14 @@ const plans = [
     price: "$499",
     period: "/mes",
     activation: "Activación desde $1,499 MXN",
-    desc: "Perfecto para una sucursal. Empieza a cobrar con la palma desde el día uno.",
+    desc: "Un POS listo para una sucursal. Cobro con palma desde el primer día.",
     features: [
-      "Terminal lista para usar",
+      "Terminal lista para operar",
       "Pagos con la palma",
       "Panel para ver tus ventas",
       "Soporte por WhatsApp",
     ],
-    cta: "Empezar con Start",
+    cta: "Crear POS Start",
     featured: false,
   },
   {
@@ -24,7 +24,7 @@ const plans = [
     price: "$799",
     period: "/mes",
     activation: "Activación desde $999 MXN",
-    desc: "Para negocios que quieren conectar Veyra con su caja y crecer en varias sucursales.",
+    desc: "POS conectado a tu caja, con varias ubicaciones y mejor control.",
     features: [
       "Todo lo de Start",
       "Conexión con tu sistema de caja",
@@ -32,7 +32,7 @@ const plans = [
       "Reportes claros",
       "Acompañamiento al arrancar",
     ],
-    cta: "Quiero Business",
+    cta: "Crear POS Business",
     featured: true,
   },
   {
@@ -40,11 +40,11 @@ const plans = [
     price: "A medida",
     period: "",
     activation: "Cotización personalizada",
-    desc: "Cadenas, franquicias y partners. Volumen, soporte dedicado y despliegue a tu ritmo.",
+    desc: "Cadenas, franquicias y partners. Volumen, integración y despliegue a tu ritmo.",
     features: [
       "Integración a tu operación",
       "Hardware a escala",
-      "Equipo y roles",
+      "Equipos y roles",
       "Atención prioritaria",
     ],
     cta: "Hablar con ventas",
@@ -59,12 +59,11 @@ export function Pricing() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-medium text-muted">Planes</p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-            Precios claros. Resultados que se sienten.
+            Precios claros para empezar a operar.
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
-            Elige el plan que se adapta a tu negocio. Sin letra chiquita
-            tecnológica — solo lo que necesitas para empezar a cobrar y atender
-            mejor.
+            Contrata tu plan y crea tu POS Veyra. Montos en MXN, activación
+            definida y sin letra chiquita tecnológica.
           </p>
         </div>
 
@@ -78,7 +77,7 @@ export function Pricing() {
               transition={{ delay: i * 0.05 }}
               className={`flex flex-col rounded-[1.5rem] border p-7 md:p-8 ${
                 plan.featured
-                  ? "border-accent bg-pastel-mint/60 shadow-sm"
+                  ? "border-accent-glow/40 bg-pastel-mint shadow-[0_0_40px_-20px_rgba(34,197,94,0.45)]"
                   : "border-border bg-surface"
               }`}
             >
@@ -87,7 +86,7 @@ export function Pricing() {
                   {plan.name}
                 </h3>
                 {plan.featured ? (
-                  <span className="rounded-full bg-accent px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-accent-foreground">
+                  <span className="rounded-full bg-accent-glow px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-cta-foreground">
                     Más popular
                   </span>
                 ) : null}
@@ -110,7 +109,7 @@ export function Pricing() {
                     key={f}
                     className="flex items-start gap-2 text-sm text-foreground"
                   >
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-glow" />
                     {f}
                   </li>
                 ))}
@@ -120,7 +119,7 @@ export function Pricing() {
                 className={`mt-8 inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-3 text-sm font-semibold transition ${
                   plan.featured
                     ? "btn-primary"
-                    : "border border-border bg-surface text-foreground hover:bg-mist"
+                    : "btn-ghost"
                 }`}
               >
                 {plan.cta}

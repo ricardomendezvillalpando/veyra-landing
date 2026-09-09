@@ -1,93 +1,62 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import { AgentAura } from "@/components/AgentOrb";
+import { ArrowRight, ArrowUpRight, Hand, ShieldCheck, Zap } from "lucide-react";
 import { NoiseBg } from "@/components/NoiseBg";
+import {
+  easeOutExpo,
+  fadeUp,
+  fadeUpSoft,
+  scaleIn,
+  staggerContainer,
+} from "@/lib/motion";
 
 type Pointer = { x: number; y: number };
 
-const STATES = [
+const highlights = [
   {
-    id: "speaking",
-    label: "Te habla",
-    line: "Son ochocientos cincuenta pesos. Acerca tu palma para pagar.",
-    audio: "/brand/voice/hero-01-speaking.mp3",
-    orb: "speaking" as const,
+    value: "<1s",
+    label: "Identidad",
+    body: "Confirma quién es antes de cobrar o dar acceso.",
+    hint: null as string | null,
+    icon: Zap,
   },
   {
-    id: "sensing",
-    label: "Lee tu palma",
-    line: "Mantén la mano un segundo… casi listo.",
-    audio: "/brand/voice/hero-02-sensing.mp3",
-    orb: "sensing" as const,
+    value: "1 gesto",
+    label: "Menos fricción",
+    body: "Pagar, entrar o registrarse sin pasos de más.",
+    hint: null as string | null,
+    icon: Hand,
   },
   {
-    id: "thinking",
-    label: "Te reconoce",
-    line: "Ya eres tú. Confirmando el pago…",
-    audio: "/brand/voice/hero-03-thinking.mp3",
-    orb: "thinking" as const,
-  },
-  {
-    id: "complete",
-    label: "Listo",
-    line: "¡Pago aprobado! Gracias.",
-    audio: "/brand/voice/hero-04-complete.mp3",
-    orb: "complete" as const,
+    value: "LFPDPPP",
+    label: "Datos protegidos",
+    body: "Tu cliente da consentimiento y puede ejercer sus derechos.",
+    hint: "Ley mexicana de protección de datos personales",
+    icon: ShieldCheck,
   },
 ];
 
 export function Hero() {
   const reduce = useReducedMotion();
-  const [step, setStep] = useState(0);
-  const [listening, setListening] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const pointerRef = useRef<Pointer | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    if (reduce || listening) return;
-    const id = window.setInterval(() => {
-      setStep((s) => (s + 1) % STATES.length);
-    }, 3000);
-    return () => window.clearInterval(id);
-  }, [reduce, listening]);
-
-  useEffect(() => {
-    return () => {
-      audioRef.current?.pause();
-      audioRef.current = null;
-    };
-  }, []);
-
-  const current = STATES[step];
-  const sensing = current.id === "sensing";
-
-  function speakLine() {
-    if (typeof window === "undefined") return;
-
-    audioRef.current?.pause();
-    const audio = new Audio(current.audio);
-    audioRef.current = audio;
-    setListening(true);
-
-    const done = () => {
-      if (audioRef.current === audio) {
-        setListening(false);
-        audioRef.current = null;
-      }
-    };
-
-    audio.addEventListener("ended", done);
-    audio.addEventListener("error", done);
-    void audio.play().catch(done);
-  }
+    if (reduce) return;
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    void v.play().catch(() => {
+      /* autoplay blocked */
+    });
+  }, [reduce]);
 
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] items-center overflow-hidden bg-background pb-16 pt-28 md:pb-20 md:pt-32"
+      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-background"
       onPointerMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
         pointerRef.current = {
@@ -104,207 +73,171 @@ export function Hero() {
         aria-hidden
         style={{
           background: `
-            radial-gradient(ellipse 90% 70% at 80% 100%, rgba(26, 107, 92, 0.28) 0%, transparent 55%),
-            radial-gradient(ellipse 50% 45% at 10% 90%, rgba(45, 212, 191, 0.16) 0%, transparent 50%),
-            linear-gradient(180deg, transparent 0%, rgba(232, 245, 241, 0.35) 55%, rgba(26, 107, 92, 0.1) 100%)
+            radial-gradient(ellipse 45% 40% at 20% 20%, rgba(34,197,94,0.07) 0%, transparent 55%),
+            radial-gradient(ellipse 40% 35% at 80% 15%, rgba(26,107,92,0.08) 0%, transparent 50%),
+            radial-gradient(ellipse 55% 45% at 70% 80%, rgba(34,197,94,0.05) 0%, transparent 55%)
           `,
         }}
       />
       <NoiseBg pointerRef={pointerRef} />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-10 px-5 md:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
-        <div>
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 items-center gap-10 px-5 pb-6 pt-28 md:grid-cols-2 md:gap-12 md:px-8 md:pb-8 md:pt-32 lg:gap-16 lg:pb-10">
+        <motion.div
+          className="relative z-10 flex flex-col items-start text-left md:pb-8"
+          variants={reduce ? undefined : staggerContainer}
+          initial={reduce ? false : "hidden"}
+          animate="show"
+        >
           <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="font-mono text-[11px] tracking-[0.18em] text-muted uppercase"
+            variants={reduce ? undefined : fadeUp}
+            className="font-mono text-[11px] tracking-[0.18em] text-accent-glow uppercase"
           >
-            Paga y entra con tu palma
+            Identidad para el mundo físico
           </motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.04 }}
-            className="mt-4 max-w-[15ch] font-display text-[2.4rem] font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl md:text-[3.1rem]"
+            variants={reduce ? undefined : fadeUp}
+            className="mt-5 max-w-[15ch] font-display text-[2.65rem] font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-[3.35rem] lg:text-[3.85rem] xl:text-[4.15rem]"
           >
-            Tu mano es la nueva forma de pagar.
+            Tu palma{" "}
+            <span className="veyra-sweep-text">identifica</span>, confirma y
+            avanza.
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="mt-5 max-w-md text-base leading-relaxed text-muted md:text-lg"
+            variants={reduce ? undefined : fadeUp}
+            className="mt-6 max-w-md text-base leading-relaxed text-muted md:text-lg lg:text-xl"
           >
-            Sin tarjeta. Sin teléfono en la caja. Acercas la palma y listo:
-            cobras más rápido, tus clientes se van feliz… y vuelven.
+            Veyra reconoce a tu cliente y confirma lo que pidió en menos de un
+            segundo: cobrar, dar acceso o hacer check-in — con menos fricción
+            para tu operación.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.14 }}
-            className="mt-8 flex flex-wrap items-center gap-3"
+            variants={reduce ? undefined : fadeUp}
+            className="mt-10 flex flex-wrap items-center gap-3 md:mt-12"
           >
-            <a
-              href="#interes"
-              className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-b from-[#2a8f7a] to-[#1a6b5c] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(26,107,92,0.65)] transition hover:brightness-105"
-            >
-              Quiero Veyra en mi negocio
+            <a href="#interes" className="btn-primary px-8 py-3.5 text-sm md:px-9 md:py-4">
+              Agenda una demo
               <ArrowUpRight className="h-4 w-4" />
             </a>
-            <a
-              href="#casos"
-              className="inline-flex items-center gap-1.5 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-foreground shadow-[0_6px_20px_-6px_rgba(15,23,42,0.18)] ring-1 ring-black/5 transition hover:bg-mist"
-            >
-              Ver cómo se usa
+            <a href="#casos" className="btn-ghost px-7 py-3.5 text-sm md:px-8 md:py-4">
+              Ver casos de uso
             </a>
           </motion.div>
-
-          <p className="mt-8 text-sm text-muted">
-            Ideal para cafés, retail, gyms, hoteles y cualquier lugar con filas.
-          </p>
-        </div>
+        </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.12 }}
-          className="relative w-full"
+          className="relative z-20 w-full self-center md:-mb-10 lg:-mb-14"
+          variants={reduce ? undefined : scaleIn}
+          initial={reduce ? false : "hidden"}
+          animate="show"
         >
-          <div className="overflow-hidden rounded-2xl border border-border bg-surface p-3 shadow-[0_28px_70px_-36px_rgba(15,23,42,0.4)] sm:p-4">
-            <div className="mb-3 flex items-center justify-between gap-3 px-1 sm:mb-4 sm:px-2">
-              <span className="font-mono text-[10px] tracking-[0.18em] text-muted uppercase">
-                Así se siente
-              </span>
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-[10px] tracking-wide text-muted">
-                  {current.label}
-                </span>
-                <button
-                  type="button"
-                  onClick={speakLine}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-accent/25 bg-accent-soft px-2.5 py-1 font-mono text-[10px] tracking-[0.12em] text-accent uppercase transition hover:border-accent/40 hover:bg-accent/15"
-                >
-                  {listening ? (
-                    <span className="flex h-3.5 w-3.5 items-center justify-center gap-[2px]">
-                      <span className="h-2.5 w-[2px] animate-pulse rounded-full bg-accent" />
-                      <span className="h-2 w-[2px] animate-pulse rounded-full bg-accent [animation-delay:120ms]" />
-                      <span className="h-3 w-[2px] animate-pulse rounded-full bg-accent [animation-delay:240ms]" />
-                    </span>
-                  ) : (
-                    <span
-                      className="ml-0.5 h-0 w-0 border-y-[5px] border-l-[8px] border-y-transparent border-l-accent"
-                      aria-hidden
-                    />
-                  )}
-                  {listening ? "Hablando…" : "Escuchar"}
-                </button>
-              </div>
-            </div>
-
-            <div className="relative aspect-[16/11] overflow-hidden bg-ink sm:aspect-[16/10]">
-              <video
-                className={`absolute inset-0 h-full w-full object-cover transition duration-700 ${
-                  sensing ? "scale-[1.04] opacity-80" : "opacity-55"
-                }`}
-                autoPlay={!reduce}
-                muted
-                loop
-                playsInline
-                poster="/brand/veyra-checkout-palm.png"
-                aria-hidden
-              >
-                <source src="/brand/veyra-hero-loop.mp4" type="video/mp4" />
-              </video>
-
-              <div
-                className="absolute inset-0 bg-gradient-to-b from-ink/75 via-ink/45 to-ink/90"
-                aria-hidden
-              />
-              <div
-                className="pointer-events-none absolute inset-0"
-                aria-hidden
-                style={{
-                  backgroundImage: sensing
-                    ? "radial-gradient(circle at 50% 38%, rgba(34,197,94,0.4), transparent 50%)"
-                    : "radial-gradient(circle at 50% 38%, rgba(26,107,92,0.3), transparent 55%)",
-                }}
-              />
-
-              <div className="relative z-10 flex h-full flex-col items-center justify-center gap-5 px-5 py-7 text-center sm:gap-6 sm:px-8 sm:py-8">
-                <div className="flex flex-col items-center">
-                  <AgentAura state={current.orb} size={132} hue={162} />
-                  <p className="mt-2 min-h-[2.75rem] max-w-md text-sm leading-relaxed text-white/95 drop-shadow-md sm:text-[0.95rem]">
-                    “{current.line}”
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div
-                    className={`relative flex h-12 w-12 items-center justify-center rounded-2xl border backdrop-blur-md transition duration-500 ${
-                      sensing
-                        ? "border-accent-glow/80 bg-accent/30 shadow-[0_0_36px_rgba(34,197,94,0.45)]"
-                        : "border-white/25 bg-white/10"
-                    }`}
+          <div className="relative aspect-[4/3] w-full min-h-[280px] sm:min-h-[340px] md:aspect-[5/4] md:min-h-[420px] lg:min-h-[480px] xl:min-h-[520px]">
+            <div
+              className="pointer-events-none absolute -inset-12 hero-media-glow md:-inset-16"
+              aria-hidden
+            />
+            <div className="hero-video-stage relative h-full w-full overflow-hidden rounded-[1.25rem] md:rounded-[1.75rem]">
+              <div className="hero-video-media absolute inset-0 rounded-[1.25rem] md:rounded-[1.75rem]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/brand/veyra-checkout-palm.png"
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover object-center"
+                />
+                {!reduce ? (
+                  <video
+                    ref={videoRef}
+                    className="absolute inset-0 h-full w-full scale-105 object-cover object-center hero-video-ken"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    poster="/brand/veyra-checkout-palm.png"
+                    aria-label="Terminal Veyra en acción"
                   >
-                    <svg
-                      viewBox="0 0 48 48"
-                      className="h-6 w-6 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      aria-hidden
-                    >
-                      <path d="M18 22v-6a4 4 0 118 0v6" />
-                      <path d="M14 24v-3a3 3 0 016 0v3" />
-                      <path d="M28 24v-3a3 3 0 016 0v5c0 7-4.5 12-10 12s-10-5-10-12v-2" />
-                      <path d="M20 36c2 1.5 4 2 4 2s2-.5 4-2" />
-                    </svg>
-                    {sensing ? (
-                      <span className="absolute inset-0 animate-ping rounded-2xl border border-accent-glow/40" />
-                    ) : null}
-                  </div>
-                  <div className="text-left">
-                    <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-white/50">
-                      Acerca tu palma
-                    </p>
-                    {current.id === "complete" ? (
-                      <p className="font-display text-lg font-semibold text-accent-glow">
-                        $850.00 · Aprobado
-                      </p>
-                    ) : (
-                      <p className="font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">
-                        $850.00{" "}
-                        <span className="text-sm font-medium text-white/50">
-                          MXN
-                        </span>
-                      </p>
-                    )}
-                  </div>
-                </div>
+                    <source src="/brand/veyra-hero-loop.mp4" type="video/mp4" />
+                  </video>
+                ) : null}
               </div>
-            </div>
-
-            <div className="mt-3 flex flex-wrap justify-between gap-x-3 gap-y-1 px-1">
-              {STATES.map((s, i) => (
-                <button
-                  key={s.id}
-                  type="button"
-                  onClick={() => setStep(i)}
-                  className={`font-mono text-[10px] tracking-[0.1em] uppercase transition ${
-                    i === step
-                      ? "text-accent"
-                      : "text-muted hover:text-foreground"
-                  }`}
-                >
-                  {s.label}
-                </button>
-              ))}
+              <div
+                className="pointer-events-none absolute inset-0 hero-video-wash rounded-[1.25rem] md:rounded-[1.75rem]"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute inset-0 rounded-[1.25rem] ring-1 ring-white/10 md:rounded-[1.75rem]"
+                aria-hidden
+              />
             </div>
           </div>
+        </motion.div>
+      </div>
+
+      <div className="relative z-10 mt-auto border-t border-white/5 bg-[#0e0e0e]/80 backdrop-blur-[2px]">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-40"
+          aria-hidden
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E\")",
+          }}
+        />
+        <motion.div
+          className="relative mx-auto flex max-w-7xl flex-col gap-0 px-5 py-8 md:flex-row md:items-stretch md:px-8 md:py-10"
+          variants={reduce ? undefined : staggerContainer}
+          initial={reduce ? false : "hidden"}
+          whileInView="show"
+          viewport={{ once: true, margin: "-40px" }}
+        >
+          {highlights.map((h, i) => {
+            const Icon = h.icon;
+            return (
+              <motion.div
+                key={h.label}
+                variants={reduce ? undefined : fadeUpSoft}
+                className={`flex flex-1 flex-col py-5 md:px-8 md:py-0 ${
+                  i > 0
+                    ? "border-t border-white/10 md:border-t-0 md:border-l"
+                    : ""
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <p className="font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+                    {h.value}
+                  </p>
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-accent-glow">
+                    <Icon className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+                <p className="mt-1 text-xs font-medium tracking-wide text-accent-glow uppercase">
+                  {h.label}
+                </p>
+                <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">
+                  {h.body}
+                </p>
+                {h.hint ? (
+                  <p className="mt-2 max-w-xs text-[11px] leading-snug text-platinum">
+                    {h.hint}
+                  </p>
+                ) : null}
+              </motion.div>
+            );
+          })}
+          <motion.div
+            variants={reduce ? undefined : fadeUpSoft}
+            className="hidden items-center pl-6 lg:flex"
+            transition={{ duration: 0.55, ease: easeOutExpo }}
+          >
+            <a
+              href="#casos"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white text-cta-foreground transition hover:scale-105 hover:bg-accent-glow"
+              aria-label="Ver casos de uso"
+            >
+              <ArrowRight className="h-5 w-5" />
+            </a>
+          </motion.div>
         </motion.div>
       </div>
     </section>

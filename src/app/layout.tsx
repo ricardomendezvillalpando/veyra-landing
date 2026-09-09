@@ -1,23 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { DM_Sans, Fraunces, Geist_Mono, Sora } from "next/font/google";
+import { Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 
-const sora = Sora({
-  variable: "--font-sora",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -32,22 +19,27 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://veyra.app";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#ffffff",
+  themeColor: "#141414",
+  colorScheme: "dark",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Veyra — Paga y entra con tu palma",
+  title: "Veyra — Identidad con tu palma para cobrar y acceder",
   description:
-    "Sin tarjeta ni teléfono en la caja. Acerca la palma y listo. Ideal para cafés, retail, gyms y hoteles en México.",
+    "Presencia, identidad y acción autorizada. Cobra, da acceso o haz check-in con la palma. Para retail, gyms, hoteles y eventos en México.",
   icons: {
-    icon: [{ url: "/brand/veyra-wordmark.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/brand/veyra-wordmark.png" }],
+    icon: [
+      { url: "/brand/veyra-favicon.svg", type: "image/svg+xml" },
+      { url: "/brand/veyra-favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/brand/veyra-favicon-48.png", sizes: "48x48", type: "image/png" },
+    ],
+    apple: [{ url: "/brand/veyra-apple-touch.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
-    title: "Veyra — Paga y entra con tu palma",
+    title: "Veyra — Identidad con tu palma para cobrar y acceder",
     description:
-      "Cobras más rápido. Tus clientes se van feliz. La mano es la nueva forma de pagar.",
+      "Menos fricción en caja y acceso. Una palma reconoce, autoriza y avanza la acción.",
     type: "website",
     locale: "es_MX",
     siteName: "Veyra",
@@ -57,15 +49,15 @@ export const metadata: Metadata = {
         url: "/brand/veyra-checkout-palm.png",
         width: 1200,
         height: 675,
-        alt: "Pagar con la palma usando Veyra",
+        alt: "Terminal Veyra: pago y acceso con la palma",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Veyra — Paga y entra con tu palma",
+    title: "Veyra — Identidad con tu palma para cobrar y acceder",
     description:
-      "Cobras más rápido. Tus clientes se van feliz. La mano es la nueva forma de pagar.",
+      "Menos fricción en caja y acceso. Una palma reconoce, autoriza y avanza la acción.",
     images: ["/brand/veyra-checkout-palm.png"],
   },
 };
@@ -78,7 +70,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${sora.variable} ${fraunces.variable} ${dmSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${outfit.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         {children}

@@ -1,0 +1,9 @@
+mobile
+mobile-expo-wip
+mobile/** 
+**/node_modules
+.git
+supabase
+*.log
+ios
+android
