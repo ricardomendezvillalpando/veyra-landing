@@ -1,9 +1,4 @@
-mobile
-mobile-expo-wip
-mobile/** 
+.tmp
 **/node_modules
 .git
-supabase
 *.log
-ios
-android

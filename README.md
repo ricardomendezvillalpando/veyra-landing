@@ -20,3 +20,7 @@ npm run dev -- --port 3001
 ## Stack
 
 Next.js · TypeScript · Tailwind v4 · Framer Motion · Vercel Analytics
+
+## Monorepo
+
+This package lives under `veyra/landing`. Sibling packages: `mobile`, `web-app`, `api`, `device`.
