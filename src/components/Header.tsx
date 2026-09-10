@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
+import { MERCHANT_URL } from "@/lib/merchant";
 
 const links = [
   { href: "/#casos", label: "Casos de uso" },
@@ -81,11 +82,10 @@ export function Header() {
 
           <div className="relative z-10 flex items-center gap-2">
             <a
-              href="/#interes"
+              href={MERCHANT_URL}
               className="btn-primary px-3.5 py-2 text-sm sm:px-5 sm:py-2.5"
             >
-              <span className="sm:hidden">Demo</span>
-              <span className="hidden sm:inline">Agenda una demo</span>
+              Inicia ya
               <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
             <button
@@ -152,10 +152,10 @@ export function Header() {
           <div className="border-t border-border p-4">
             <button
               type="button"
-              onClick={() => go("/#interes")}
+              onClick={() => go(MERCHANT_URL)}
               className="btn-primary flex h-12 w-full items-center justify-center gap-2 text-sm"
             >
-              Agenda una demo
+              Inicia ya
               <ArrowUpRight className="h-4 w-4" />
             </button>
           </div>

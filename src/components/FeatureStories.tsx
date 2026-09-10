@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { MERCHANT_URL } from "@/lib/merchant";
 
 const blocks = [
   {
@@ -49,8 +50,8 @@ export function FeatureStories() {
               <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
                 {b.body}
               </p>
-              <a href="#interes" className="btn-primary mt-7 px-6 py-3 text-sm">
-                Quiero una demo
+              <a href={MERCHANT_URL} className="btn-primary mt-7 px-6 py-3 text-sm">
+                Inicia ya
               </a>
             </div>
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-mist shadow-lg ring-1 ring-border">

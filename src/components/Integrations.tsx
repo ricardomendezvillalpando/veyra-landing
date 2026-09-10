@@ -10,6 +10,7 @@ import {
   Smartphone,
   Store,
 } from "lucide-react";
+import { MERCHANT_URL } from "@/lib/merchant";
 
 const chips = [
   { icon: CreditCard, label: "PSP" },
@@ -62,8 +63,8 @@ export function Integrations() {
           })}
         </motion.div>
 
-        <a href="#interes" className="btn-primary mt-10 rounded-full px-8 py-3.5 text-sm">
-          Quiero una demo
+        <a href={MERCHANT_URL} className="btn-primary mt-10 rounded-full px-8 py-3.5 text-sm">
+          Inicia ya
         </a>
       </div>
     </section>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { MERCHANT_URL } from "@/lib/merchant";
 
 const points = [
   {
@@ -41,10 +42,10 @@ export function Security() {
               protegidos desde el primer uso.
             </p>
             <a
-              href="#interes"
+              href={MERCHANT_URL}
               className="btn-primary mt-8 rounded-full px-7 py-3.5 text-sm"
             >
-              Agenda una demo
+              Inicia ya
             </a>
           </motion.div>
 

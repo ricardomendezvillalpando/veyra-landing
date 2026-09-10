@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
+import { MERCHANT_URL } from "@/lib/merchant";
 
 const plans = [
   {
@@ -115,14 +116,14 @@ export function Pricing() {
                 ))}
               </ul>
               <a
-                href="#interes"
+                href={plan.name === "Enterprise" ? "#interes" : MERCHANT_URL}
                 className={`mt-8 inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-3 text-sm font-semibold transition ${
                   plan.featured
                     ? "btn-primary"
                     : "btn-ghost"
                 }`}
               >
-                {plan.cta}
+                {plan.name === "Enterprise" ? plan.cta : "Inicia ya"}
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </a>
             </motion.article>

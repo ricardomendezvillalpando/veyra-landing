@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { MERCHANT_URL } from "@/lib/merchant";
 
 export function Testimonial() {
   return (
@@ -43,8 +44,8 @@ export function Testimonial() {
                 Operadores en piloto · Gyms & retail
               </footer>
             </blockquote>
-            <a href="#interes" className="btn-primary mt-8 rounded-full px-7 py-3.5 text-sm">
-              Quiero una demo
+            <a href={MERCHANT_URL} className="btn-primary mt-8 rounded-full px-7 py-3.5 text-sm">
+              Inicia ya
             </a>
           </div>
         </motion.div>

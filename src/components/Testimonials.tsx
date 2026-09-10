@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { MERCHANT_URL } from "@/lib/merchant";
 
 const TESTIMONIALS = [
   {
@@ -69,10 +70,10 @@ export function Testimonials() {
             Historias de design partners y operadores en el piloto.
           </p>
           <a
-            href="#interes"
+            href={MERCHANT_URL}
             className="btn-primary mt-8 px-7 py-3 text-sm"
           >
-            Quiero ser partner
+            Inicia ya
           </a>
         </motion.div>
 

@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Hand, ShieldCheck, Zap } from "lucide-react";
 import { NoiseBg } from "@/components/NoiseBg";
+import { MERCHANT_URL } from "@/lib/merchant";
 import {
   easeOutExpo,
   fadeUp,
@@ -117,8 +118,8 @@ export function Hero() {
             variants={reduce ? undefined : fadeUp}
             className="mt-10 flex flex-wrap items-center gap-3 md:mt-12"
           >
-            <a href="#interes" className="btn-primary px-8 py-3.5 text-sm md:px-9 md:py-4">
-              Agenda una demo
+            <a href={MERCHANT_URL} className="btn-primary px-8 py-3.5 text-sm md:px-9 md:py-4">
+              Inicia ya
               <ArrowUpRight className="h-4 w-4" />
             </a>
             <a href="#casos" className="btn-ghost px-7 py-3.5 text-sm md:px-8 md:py-4">

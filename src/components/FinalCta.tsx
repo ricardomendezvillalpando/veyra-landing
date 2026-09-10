@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { MERCHANT_URL } from "@/lib/merchant";
 
 export function FinalCta() {
   return (
@@ -17,12 +18,12 @@ export function FinalCta() {
             Sé el negocio al que todos quieren volver.
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-accent-foreground/85 md:text-base">
-            Agenda una demo y mira cómo Veyra acelera tu checkout, mejora la
-            captación y diferencia tu marca en minutos — no en meses.
+            Abre tu consola Veyra, configura productos y terminales, y mira
+            cómo acelera tu checkout en minutos — no en meses.
           </p>
         </div>
-        <a href="#interes" className="btn-primary-on-accent shrink-0 px-7 py-3.5 text-sm">
-          Quiero una demo
+        <a href={MERCHANT_URL} className="btn-primary-on-accent shrink-0 px-7 py-3.5 text-sm">
+          Inicia ya
           <ArrowRight className="h-4 w-4" />
         </a>
       </motion.div>

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Check, Sparkles } from "lucide-react";
+import { MERCHANT_URL } from "@/lib/merchant";
 
 const highlights = [
   "Checkout en menos de un segundo",
@@ -44,8 +45,8 @@ export function FeatureHighlight() {
               </li>
             ))}
           </ul>
-          <a href="#interes" className="btn-primary mt-8 rounded-xl px-7 py-3.5 text-sm">
-            Quiero una demo
+          <a href={MERCHANT_URL} className="btn-primary mt-8 rounded-xl px-7 py-3.5 text-sm">
+            Inicia ya
           </a>
         </motion.div>
 

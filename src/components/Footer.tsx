@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { LEGAL_NAV } from "@/lib/legal";
+import { MERCHANT_URL } from "@/lib/merchant";
 
 const columns = [
   {
@@ -15,7 +16,8 @@ const columns = [
   {
     title: "Compañía",
     links: [
-      { href: "/#interes", label: "Agenda una demo" },
+      { href: MERCHANT_URL, label: "Inicia ya" },
+      { href: "/#interes", label: "Contacto" },
       { href: "/#cumplimiento", label: "Cumplimiento" },
     ],
   },
@@ -44,10 +46,10 @@ export function Footer() {
               con la palma — para negocios en México.
             </p>
             <a
-              href="/#interes"
+              href={MERCHANT_URL}
               className="btn-primary mt-6 rounded-full px-5 py-2.5 text-sm"
             >
-              Agenda una demo
+              Inicia ya
             </a>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">

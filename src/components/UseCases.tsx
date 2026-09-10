@@ -11,6 +11,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { easeOutExpo, fadeUpSoft, staggerContainer } from "@/lib/motion";
+import { MERCHANT_URL } from "@/lib/merchant";
 
 type CaseItem = {
   id: string;
@@ -223,13 +224,13 @@ export function UseCases() {
                 ))}
               </ol>
               <motion.a
-                href="#interes"
+                href={MERCHANT_URL}
                 className="btn-primary mt-10 inline-flex px-7 py-3 text-sm"
                 initial={reduce ? false : { opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.28, duration: 0.4 }}
               >
-                Agenda una demo
+                Inicia ya
               </motion.a>
             </div>
 
