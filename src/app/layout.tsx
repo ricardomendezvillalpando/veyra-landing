@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://veyra.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://veyrabiometric.com";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -30,11 +30,12 @@ export const metadata: Metadata = {
     "Presencia, identidad y acción autorizada. Cobra, da acceso o haz check-in con la palma. Para retail, gyms, hoteles y eventos en México.",
   icons: {
     icon: [
-      { url: "/brand/veyra-favicon.svg", type: "image/svg+xml" },
       { url: "/brand/veyra-favicon-32.png", sizes: "32x32", type: "image/png" },
       { url: "/brand/veyra-favicon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [{ url: "/brand/veyra-apple-touch.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/brand/veyra-favicon-32.png",
   },
   openGraph: {
     title: "Veyra — Identidad con tu palma para cobrar y acceder",
