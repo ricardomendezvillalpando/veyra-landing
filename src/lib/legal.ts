@@ -5,10 +5,11 @@ export const LEGAL_RESPONSIBLE = {
   country: "México",
   domicile:
     "Domicilio fiscal por confirmar — México. Se actualizará en este aviso al quedar formalizado.",
-  privacyEmail: "privacidad@veyra.app",
-  arcoEmail: "arco@veyra.app",
-  supportEmail: "hola@veyra.app",
-  lastUpdated: "8 de septiembre de 2026",
+  privacyEmail: "privacy@veyrabiometric.com",
+  /** ARCO y soporte general — mismo buzón operativo. */
+  arcoEmail: "hola@veyrabiometric.com",
+  supportEmail: "hola@veyrabiometric.com",
+  lastUpdated: "15 de septiembre de 2026",
 };
 
 export const LEGAL_NAV = [
