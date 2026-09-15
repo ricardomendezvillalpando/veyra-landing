@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { LEGAL_NAV } from "@/lib/legal";
-import { MERCHANT_URL } from "@/lib/merchant";
+import { MERCHANT_START_URL } from "@/lib/merchant";
 
 const columns = [
   {
@@ -16,7 +16,8 @@ const columns = [
   {
     title: "Compañía",
     links: [
-      { href: MERCHANT_URL, label: "Inicia ya" },
+      { href: MERCHANT_START_URL, label: "Inicia ya" },
+      { href: "/soporte", label: "Soporte" },
       { href: "/#interes", label: "Contacto" },
       { href: "/#cumplimiento", label: "Cumplimiento" },
     ],
@@ -46,7 +47,7 @@ export function Footer() {
               con la palma — para negocios en México.
             </p>
             <a
-              href={MERCHANT_URL}
+              href={MERCHANT_START_URL}
               className="btn-primary mt-6 rounded-full px-5 py-2.5 text-sm"
             >
               Inicia ya

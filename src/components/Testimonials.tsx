@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { MERCHANT_URL } from "@/lib/merchant";
+import { MERCHANT_START_URL } from "@/lib/merchant";
 
 const TESTIMONIALS = [
   {
@@ -64,13 +64,13 @@ export function Testimonials() {
           transition={{ duration: 0.55 }}
         >
           <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-            Qué dicen quienes prueban Veyra
+            Lo que buscan los negocios en piloto
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted md:text-lg">
-            Historias de design partners y operadores en el piloto.
+            Escenarios reales de operadores con los que diseñamos el flujo.
           </p>
           <a
-            href={MERCHANT_URL}
+            href={MERCHANT_START_URL}
             className="btn-primary mt-8 px-7 py-3 text-sm"
           >
             Inicia ya

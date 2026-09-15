@@ -2,10 +2,12 @@
 
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { EnrollAppBridge } from '@/components/EnrollAppBridge';
+import { persistPendingEnroll } from '@/lib/enroll-bridge';
 
 const API_BASE =
   process.env.NEXT_PUBLIC_VEYRA_API_BASE ??
-  'https://veyra-api-production-80af.up.railway.app';
+  'https://api.veyrabiometric.com';
 
 const GOOGLE_CLIENT_ID =
   process.env.NEXT_PUBLIC_GOOGLE_WEB_CLIENT_ID ??
@@ -62,6 +64,9 @@ function apiErrorMessage(body: unknown, fallback: string): string {
 export function CompleteAccountForm({ sessionId }: Props) {
   const searchParams = useSearchParams();
   const mlToken = searchParams.get('ml');
+  const stayOnWeb =
+    searchParams.get('web') === '1' || Boolean(mlToken);
+  const forceOpen = searchParams.get('open') === 'app';
 
   const [session, setSession] = useState<Session | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -84,6 +89,10 @@ export function CompleteAccountForm({ sessionId }: Props) {
 
   const googleBtnRef = useRef<HTMLDivElement | null>(null);
   const mlConsumed = useRef(false);
+
+  useEffect(() => {
+    persistPendingEnroll(sessionId);
+  }, [sessionId]);
 
   const linkWithBearer = useCallback(
     async (
@@ -285,7 +294,7 @@ export function CompleteAccountForm({ sessionId }: Props) {
     script.onerror = () => {
       if (!cancelled) {
         setFormError(
-          'No se pudo cargar Google Sign-In. Usa otras opciones (PoC).',
+          'No se pudo cargar Google Sign-In. Usa el correo u otras opciones.',
         );
       }
     };
@@ -392,6 +401,16 @@ export function CompleteAccountForm({ sessionId }: Props) {
         Vincula tu palma a tu cuenta Google para usarla en el comercio.
       </p>
 
+      {!done && !loadError ? (
+        <div className="mt-6">
+          <EnrollAppBridge
+            sessionId={sessionId}
+            stayOnWeb={stayOnWeb}
+            forceOpen={forceOpen}
+          />
+        </div>
+      ) : null}
+
       {loadError && <p className="mt-8 text-[#FF6B5A]">{loadError}</p>}
 
       {!loadError && !session && (
@@ -399,34 +418,78 @@ export function CompleteAccountForm({ sessionId }: Props) {
       )}
 
       {done && (
-        <div className="mt-10">
-          <p className="text-xl font-medium text-[#22C55E]">
-            {linkedVia === 'google'
-              ? 'Palma vinculada a tu cuenta Google'
-              : linkedVia === 'magic'
-                ? 'Palma vinculada a tu correo'
-                : 'Listo, tu palma ya está vinculada'}
-          </p>
-          {(linked?.fullName || linked?.email) && (
-            <p className="mt-3 text-[15px] text-[#F2F2F2]">
-              {linked.fullName ? (
-                <>
-                  <span className="font-medium">{linked.fullName}</span>
-                  {linked.email ? (
-                    <span className="text-[rgba(242,242,242,0.62)]">
-                      {' '}
-                      · {linked.email}
-                    </span>
-                  ) : null}
-                </>
-              ) : (
-                linked.email
-              )}
+        <div className="mt-10 space-y-6">
+          <div>
+            <p className="text-xl font-medium text-[#22C55E]">
+              {linkedVia === 'google'
+                ? 'Palma vinculada a tu cuenta Google'
+                : linkedVia === 'magic'
+                  ? 'Palma vinculada a tu correo'
+                  : 'Listo, tu palma ya está vinculada'}
             </p>
-          )}
-          <p className="mt-2 text-sm text-[rgba(242,242,242,0.62)]">
-            Ya puedes pagar o acceder con tu palma en terminales Veyra.
-          </p>
+            {(linked?.fullName || linked?.email) && (
+              <p className="mt-3 text-[15px] text-[#F2F2F2]">
+                {linked.fullName ? (
+                  <>
+                    <span className="font-medium">{linked.fullName}</span>
+                    {linked.email ? (
+                      <span className="text-[rgba(242,242,242,0.62)]">
+                        {' '}
+                        · {linked.email}
+                      </span>
+                    ) : null}
+                  </>
+                ) : (
+                  linked.email
+                )}
+              </p>
+            )}
+            <p className="mt-3 text-sm leading-relaxed text-[rgba(242,242,242,0.72)]">
+              Un paso más: abre la app Veyra con la <strong className="text-[#F2F2F2]">misma cuenta Google</strong> y agrega tu tarjeta. Sin tarjeta no se puede cobrar con palma.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <a
+              href={`veyra://enroll?session=${encodeURIComponent(sessionId)}`}
+              className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-[#22C55E] px-5 text-center text-[15px] font-semibold text-[#0B0B0B]"
+            >
+              Abrir app Veyra
+            </a>
+            <a
+              href={`https://veyrabiometric.com/e/${encodeURIComponent(sessionId)}?open=app`}
+              className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-[rgba(255,255,255,0.14)] px-5 text-center text-sm font-medium text-[#F2F2F2]"
+            >
+              Continuar en este enlace
+            </a>
+            <div className="grid grid-cols-2 gap-2 pt-1">
+              <a
+                href={
+                  process.env.NEXT_PUBLIC_VEYRA_PLAY_STORE_URL ||
+                  'https://play.google.com/store/search?q=Veyra&c=apps'
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[40px] items-center justify-center rounded-lg bg-[#1C1C1C] px-3 text-center text-xs font-medium text-[rgba(242,242,242,0.85)]"
+              >
+                Descargar Android
+              </a>
+              <a
+                href={
+                  process.env.NEXT_PUBLIC_VEYRA_APP_STORE_URL ||
+                  'https://apps.apple.com/search?term=Veyra'
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[40px] items-center justify-center rounded-lg bg-[#1C1C1C] px-3 text-center text-xs font-medium text-[rgba(242,242,242,0.85)]"
+              >
+                Descargar iPhone
+              </a>
+            </div>
+            <p className="text-center text-[11px] text-[rgba(242,242,242,0.45)]">
+              Si aún no tienes la app, descárgala y entra con el mismo Google. Luego agrega tu tarjeta en Wallet.
+            </p>
+          </div>
         </div>
       )}
 
@@ -478,7 +541,7 @@ export function CompleteAccountForm({ sessionId }: Props) {
                     {debugMagicUrl && (
                       <div className="rounded-lg border border-[rgba(255,255,255,0.12)] bg-[#1C1C1C] p-3">
                         <p className="mb-1 text-xs text-[rgba(242,242,242,0.45)]">
-                          PoC debug — copia este enlace:
+                          Si no llega el correo, usa este enlace:
                         </p>
                         <a
                           href={debugMagicUrl}
@@ -518,7 +581,7 @@ export function CompleteAccountForm({ sessionId }: Props) {
                 >
                   {showFallback
                     ? 'Ocultar otras opciones'
-                    : 'Otras opciones (PoC)'}
+                    : 'Continuar con nombre y teléfono'}
                 </button>
                 {showFallback && (
                   <form
