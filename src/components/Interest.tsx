@@ -25,12 +25,11 @@ export function Interest() {
             transition={{ duration: 0.55 }}
           >
             <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-              Agenda una demo de Veyra
+              ¿Listo para cotizar o ver una demo?
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
-              Si operas un negocio, te mostramos el flujo completo en tu
-              contexto. Si quieres ser de los primeros en pagar con la palma,
-              déjanos tus datos y te avisamos.
+              Negocios: te explicamos contado, meses y la mensualidad del
+              software. Clientes: te avisamos cuando haya comercios cerca.
             </p>
           </motion.div>
 

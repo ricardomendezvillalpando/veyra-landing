@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MERCHANT_URL } from "@/lib/merchant";
+import { MERCHANT_START_URL } from "@/lib/merchant";
 
 export function Testimonial() {
   return (
@@ -16,7 +16,7 @@ export function Testimonial() {
         >
           <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-mist shadow-lg ring-1 ring-border">
             <Image
-              src="/brand/veyra-checkout-palm.png"
+              src="/brand/veyra-terminal-scene.jpg"
               alt="Experiencia de checkout con Veyra"
               fill
               className="object-cover"
@@ -44,7 +44,7 @@ export function Testimonial() {
                 Operadores en piloto · Gyms & retail
               </footer>
             </blockquote>
-            <a href={MERCHANT_URL} className="btn-primary mt-8 rounded-full px-7 py-3.5 text-sm">
+            <a href={MERCHANT_START_URL} className="btn-primary mt-8 rounded-full px-7 py-3.5 text-sm">
               Inicia ya
             </a>
           </div>

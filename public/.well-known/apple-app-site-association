@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "HBT49PHN48.com.veyra.consumer",
+        "paths": ["/e/*", "/e/*/*"]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["HBT49PHN48.com.veyra.consumer"]
+  }
+}

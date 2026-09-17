@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.veyraconsumer",
+      "sha256_cert_fingerprints": [
+        "52:77:E2:39:10:9E:89:EF:83:3A:8D:70:9D:7B:77:93:68:76:88:F5:BB:19:F0:FD:4C:AD:E8:FE:7D:56:F8:75"
+      ]
+    }
+  }
+]

@@ -2,54 +2,63 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
-import { MERCHANT_URL } from "@/lib/merchant";
+import { MERCHANT_START_URL } from "@/lib/merchant";
+
+/** Lead-facing prices — software siempre aparte del equipo. */
+const SOFTWARE_MONTH = "$699";
 
 const plans = [
   {
-    name: "Start",
-    price: "$499",
-    period: "/mes",
-    activation: "Activación desde $1,499 MXN",
-    desc: "Un POS listo para una sucursal. Cobro con palma desde el primer día.",
-    features: [
-      "Terminal lista para operar",
-      "Pagos con la palma",
-      "Panel para ver tus ventas",
-      "Soporte por WhatsApp",
-    ],
-    cta: "Crear POS Start",
+    id: "contado",
+    name: "De contado",
+    price: "$10,490",
+    period: " + IVA · terminal",
+    softwareNote: `${SOFTWARE_MONTH} + IVA al mes · software`,
+    badge: "Mejor precio",
     featured: false,
-  },
-  {
-    name: "Business",
-    price: "$799",
-    period: "/mes",
-    activation: "Activación desde $999 MXN",
-    desc: "POS conectado a tu caja, con varias ubicaciones y mejor control.",
+    desc: "Pagas la terminal una sola vez. El software Veyra se cobra aparte, cada mes, mientras uses el servicio.",
     features: [
-      "Todo lo de Start",
-      "Conexión con tu sistema de caja",
-      "Varias ubicaciones",
-      "Reportes claros",
-      "Acompañamiento al arrancar",
+      "Tu terminal Palm POS (queda en tu negocio)",
+      `${SOFTWARE_MONTH} + IVA al mes por el software Veyra`,
+      "Cobro con palma, consola y app del cliente",
+      "Soporte y actualizaciones incluidas en la mensualidad",
     ],
-    cta: "Crear POS Business",
-    featured: true,
+    cta: "Quiero cotizar",
   },
   {
-    name: "Enterprise",
+    id: "msi",
+    name: "A meses",
+    price: "~$1,008",
+    period: " + IVA /mes · 12 meses",
+    softwareNote: `+ ${SOFTWARE_MONTH} + IVA al mes · software`,
+    badge: "Más elegido",
+    featured: true,
+    desc: "La terminal se paga a 12 meses sin intereses con tu tarjeta. El software Veyra es una mensualidad aparte — igual que de contado.",
+    features: [
+      "Misma terminal que de contado",
+      "Aprox. $1,008 + IVA al mes × 12 (por la terminal)",
+      `${SOFTWARE_MONTH} + IVA al mes por el software Veyra`,
+      "Empiezas con menos desembolso al inicio",
+    ],
+    cta: "Quiero a meses",
+  },
+  {
+    id: "varios",
+    name: "Varias sucursales",
     price: "A medida",
     period: "",
-    activation: "Cotización personalizada",
-    desc: "Cadenas, franquicias y partners. Volumen, integración y despliegue a tu ritmo.",
+    softwareNote: `${SOFTWARE_MONTH} + IVA al mes · por cada terminal`,
+    badge: null,
+    featured: false,
+    desc: "Varias terminales o una cadena. Misma lógica: compras cada equipo y pagas el software por terminal activa.",
     features: [
-      "Integración a tu operación",
-      "Hardware a escala",
-      "Equipos y roles",
-      "Atención prioritaria",
+      "Precio por volumen en terminales",
+      `${SOFTWARE_MONTH} + IVA al mes por cada terminal en uso`,
+      "Misma consola y cobro con palma",
+      "Acompañamiento al arrancar",
     ],
     cta: "Hablar con ventas",
-    featured: false,
+    href: "#interes",
   },
 ];
 
@@ -58,20 +67,24 @@ export function Pricing() {
     <section id="planes" className="border-t border-border py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium text-muted">Planes</p>
+          <p className="text-sm font-medium text-muted">¿Cuánto cuesta?</p>
           <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-            Precios claros para empezar a operar.
+            La terminal es tuya. El software, mes a mes.
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
-            Contrata tu plan y crea tu POS Veyra. Montos en MXN, activación
-            definida y sin letra chiquita tecnológica.
+            En todos los planes pagas dos cosas: la terminal (una vez, o a
+            meses) y una suscripción mensual de{" "}
+            <strong className="text-foreground">
+              {SOFTWARE_MONTH} + IVA
+            </strong>{" "}
+            por usar Veyra — palma, consola, app y soporte.
           </p>
         </div>
 
         <div className="mt-14 grid gap-5 lg:grid-cols-3">
           {plans.map((plan, i) => (
             <motion.article
-              key={plan.name}
+              key={plan.id}
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -86,20 +99,22 @@ export function Pricing() {
                 <h3 className="font-display text-lg font-semibold text-foreground">
                   {plan.name}
                 </h3>
-                {plan.featured ? (
-                  <span className="rounded-full bg-accent-glow px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-cta-foreground">
-                    Más popular
+                {plan.badge ? (
+                  <span className="rounded-full bg-accent-glow/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-accent-glow">
+                    {plan.badge}
                   </span>
                 ) : null}
               </div>
               <p className="mt-4 font-display text-4xl font-semibold tracking-tight text-foreground">
                 {plan.price}
-                <span className="text-base font-medium text-muted">
-                  {plan.period}
-                </span>
+                {plan.period ? (
+                  <span className="text-base font-medium text-muted">
+                    {plan.period}
+                  </span>
+                ) : null}
               </p>
-              <p className="mt-1 text-xs font-medium text-muted">
-                {plan.activation}
+              <p className="mt-2 text-sm font-medium text-accent-glow">
+                {plan.softwareNote}
               </p>
               <p className="mt-4 text-sm leading-relaxed text-muted">
                 {plan.desc}
@@ -116,19 +131,26 @@ export function Pricing() {
                 ))}
               </ul>
               <a
-                href={plan.name === "Enterprise" ? "#interes" : MERCHANT_URL}
+                href={"href" in plan && plan.href ? plan.href : MERCHANT_START_URL}
                 className={`mt-8 inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-3 text-sm font-semibold transition ${
                   plan.featured
-                    ? "btn-primary"
-                    : "btn-ghost"
+                    ? "bg-accent-glow text-cta-foreground hover:opacity-90"
+                    : "border border-border bg-background hover:border-foreground/30"
                 }`}
               >
-                {plan.name === "Enterprise" ? plan.cta : "Inicia ya"}
-                <ArrowUpRight className="h-3.5 w-3.5" />
+                {plan.cta}
+                <ArrowUpRight className="h-4 w-4" />
               </a>
             </motion.article>
           ))}
         </div>
+
+        <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-muted">
+          Precios en pesos mexicanos. El IVA se suma al final. Los meses sin
+          intereses dependen de tu banco y tu tarjeta. Los cobros a tus clientes
+          se procesan con la pasarela de pagos de Veyra; eso no cambia el precio
+          de la terminal ni de la suscripción.
+        </p>
       </div>
     </section>
   );

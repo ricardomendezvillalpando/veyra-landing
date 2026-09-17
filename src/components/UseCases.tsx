@@ -11,7 +11,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { easeOutExpo, fadeUpSoft, staggerContainer } from "@/lib/motion";
-import { MERCHANT_URL } from "@/lib/merchant";
+import { MERCHANT_START_URL } from "@/lib/merchant";
 
 type CaseItem = {
   id: string;
@@ -42,7 +42,7 @@ const cases: CaseItem[] = [
         body: "El terminal confirma el pago. Tu personal sigue con el siguiente cliente.",
       },
     ],
-    image: "/brand/veyra-checkout-palm.png",
+    image: "/brand/veyra-terminal-scene.jpg",
     imageAlt: "Pagar con la palma en un terminal Veyra",
   },
   {
@@ -224,7 +224,7 @@ export function UseCases() {
                 ))}
               </ol>
               <motion.a
-                href={MERCHANT_URL}
+                href={MERCHANT_START_URL}
                 className="btn-primary mt-10 inline-flex px-7 py-3 text-sm"
                 initial={reduce ? false : { opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}

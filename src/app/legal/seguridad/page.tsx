@@ -28,8 +28,9 @@ export default function SeguridadLegalPage() {
         <ul className="list-disc space-y-2 pl-5">
           <li>Cifrado en tránsito (TLS) en canales de producción.</li>
           <li>
-            Tokenización de métodos de pago a través de PSP cuando aplique;
-            minimización de datos de tarjeta en nuestros sistemas.
+            Tokenización de métodos de pago a través de PSP (Stripe) cuando
+            aplique; minimización de datos de tarjeta en nuestros sistemas (no
+            almacenamos PAN en la API Veyra en el flujo palm-pay).
           </li>
           <li>
             Separación de secretos, control de acceso por roles y registro de
@@ -47,7 +48,61 @@ export default function SeguridadLegalPage() {
       </section>
 
       <section>
-        <LegalH2>3. Medidas organizativas</LegalH2>
+        <LegalH2>3. Hardware de pago (PCI PTS / EMV)</LegalH2>
+        <p>
+          El terminal Palm POS de campo (familia ZCS Z90 / Z90NP Palm Vein
+          Payment) es publicado por el fabricante con certificaciones orientadas
+          a pagos seguros, incluyendo:
+        </p>
+        <ul className="mt-3 list-disc space-y-2 pl-5">
+          <li>
+            <strong>PCI PTS 5.x</strong> — seguridad de terminales de pago (PIN
+            Transaction Security).
+          </li>
+          <li>
+            <strong>EMV Contact L1 &amp; L2</strong> y{" "}
+            <strong>EMV Contactless L1</strong>.
+          </li>
+          <li>
+            <strong>PayWave</strong> y <strong>PayPass</strong> (esquemas de
+            marca anunciados por el fabricante).
+          </li>
+        </ul>
+        <p className="mt-3">
+          Estas certificaciones respaldan el hardware cuando se usa el canal de
+          tarjeta del dispositivo. Son distintas de <strong>PCI DSS</strong>{" "}
+          (controles del entorno que procesa/almacena datos de tarjeta). En el
+          modelo palm-pay de Veyra, la identificación biométrica autoriza un
+          cobro off-session sobre un PaymentMethod tokenizado; la confirmación
+          visible en terminal se emite cuando el PaymentIntent resulta en estado
+          succeeded (no solo por el match de palma).
+        </p>
+        <p className="mt-3">
+          Referencias públicas del fabricante:{" "}
+          <a
+            href="https://www.szzcs.com/products/Palm-Vein-Terminals/palm-vein-payment-pos.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent-glow underline-offset-4 hover:underline"
+          >
+            Z90NP Palm Vein Payment POS
+          </a>
+          ;{" "}
+          <a
+            href="https://www.szzcs.com/products/-POS-Terminal/z90-android-120-pos-hniwjt.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent-glow underline-offset-4 hover:underline"
+          >
+            Z90 POS (PCI PTS 5.x)
+          </a>
+          . Los certificados oficiales pueden solicitarse al OEM / distribuidor
+          para auditorías.
+        </p>
+      </section>
+
+      <section>
+        <LegalH2>4. Medidas organizativas</LegalH2>
         <ul className="list-disc space-y-2 pl-5">
           <li>Acceso al mínimo privilegio para personal y proveedores.</li>
           <li>Contratos de encargo / confidencialidad con terceros relevantes.</li>
@@ -61,7 +116,7 @@ export default function SeguridadLegalPage() {
       </section>
 
       <section>
-        <LegalH2>4. Incidentes</LegalH2>
+        <LegalH2>5. Incidentes</LegalH2>
         <p>
           Ante una vulneración de seguridad que afecte datos personales,
           actuaremos conforme a las obligaciones legales aplicables,
@@ -71,7 +126,7 @@ export default function SeguridadLegalPage() {
       </section>
 
       <section>
-        <LegalH2>5. Limitaciones</LegalH2>
+        <LegalH2>6. Limitaciones</LegalH2>
         <p>
           Ningún sistema es 100% invulnerable. El titular y el comercio también
           deben aplicar buenas prácticas (dispositivos actualizados, no compartir

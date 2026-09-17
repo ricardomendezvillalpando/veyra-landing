@@ -5,15 +5,15 @@ import { motion } from "framer-motion";
 
 const frames = [
   {
-    src: "/brand/veyra-palm-scan.jpg",
-    alt: "Escaneo de palma contactless en terminal Veyra",
-    caption: "Acerca la mano. Listo.",
+    src: "/brand/veyra-terminal-scene.jpg",
+    alt: "Terminal Veyra real — pago con la palma en café",
+    caption: "Paga con la palma de tu mano.",
     span: "md:col-span-7",
   },
   {
     src: "/brand/veyra-terminal.jpg",
-    alt: "Terminal de pago biométrico Veyra",
-    caption: "Terminal de checkout",
+    alt: "Pago aprobado en terminal Veyra Z90P",
+    caption: "Pago aprobado en segundos",
     span: "md:col-span-5",
   },
   {

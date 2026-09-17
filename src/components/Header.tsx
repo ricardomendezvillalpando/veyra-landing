@@ -4,14 +4,14 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
-import { MERCHANT_URL } from "@/lib/merchant";
+import { MERCHANT_START_URL } from "@/lib/merchant";
 
 const links = [
   { href: "/#casos", label: "Casos de uso" },
-  { href: "/#proceso", label: "Cómo funciona" },
-  { href: "/#planes", label: "Planes" },
+  { href: "/#planes", label: "Inversión" },
+  { href: "/#dudas", label: "Dudas" },
   { href: "/#seguridad", label: "Seguridad" },
-  { href: "/#cumplimiento", label: "Legal" },
+  { href: "/#interes", label: "Demo" },
 ];
 
 export function Header() {
@@ -82,7 +82,7 @@ export function Header() {
 
           <div className="relative z-10 flex items-center gap-2">
             <a
-              href={MERCHANT_URL}
+              href={MERCHANT_START_URL}
               className="btn-primary px-3.5 py-2 text-sm sm:px-5 sm:py-2.5"
             >
               Inicia ya
@@ -152,7 +152,7 @@ export function Header() {
           <div className="border-t border-border p-4">
             <button
               type="button"
-              onClick={() => go(MERCHANT_URL)}
+              onClick={() => go(MERCHANT_START_URL)}
               className="btn-primary flex h-12 w-full items-center justify-center gap-2 text-sm"
             >
               Inicia ya

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Check, Sparkles } from "lucide-react";
-import { MERCHANT_URL } from "@/lib/merchant";
+import { MERCHANT_START_URL } from "@/lib/merchant";
 
 const highlights = [
   "Checkout en menos de un segundo",
@@ -45,7 +45,7 @@ export function FeatureHighlight() {
               </li>
             ))}
           </ul>
-          <a href={MERCHANT_URL} className="btn-primary mt-8 rounded-xl px-7 py-3.5 text-sm">
+          <a href={MERCHANT_START_URL} className="btn-primary mt-8 rounded-xl px-7 py-3.5 text-sm">
             Inicia ya
           </a>
         </motion.div>
@@ -65,7 +65,7 @@ export function FeatureHighlight() {
             <div className="overflow-hidden rounded-2xl border border-border bg-surface p-3 shadow-lg">
               <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
                 <Image
-                  src="/brand/veyra-checkout-palm.png"
+                  src="/brand/veyra-terminal-scene.jpg"
                   alt="Checkout con palma Veyra"
                   fill
                   className="object-cover"

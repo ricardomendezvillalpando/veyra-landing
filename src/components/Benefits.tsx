@@ -15,13 +15,13 @@ const cards = [
   {
     title: "Lightning fast",
     body: "Checkout en menos de un segundo — más rápido que tarjeta o teléfono. Más tickets por hora en tu mostrador.",
-    image: "/brand/veyra-checkout-palm.png",
+    image: "/brand/veyra-terminal-scene.jpg",
     span: "md:col-span-1",
   },
   {
     title: "Lealtad sin fricción",
     body: "Puntos y membresías con la misma presencia. Sin QR, sin app extra, sin tarjeta que se pierde.",
-    image: "/brand/veyra-palm-scan.jpg",
+    image: "/brand/veyra-terminal.jpg",
     span: "md:col-span-1",
   },
 ];

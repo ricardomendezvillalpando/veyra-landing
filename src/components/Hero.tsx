@@ -1,90 +1,85 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Hand, ShieldCheck, Zap } from "lucide-react";
-import { NoiseBg } from "@/components/NoiseBg";
-import { MERCHANT_URL } from "@/lib/merchant";
+import { ArrowRight, ArrowUpRight, Hand, Users, Zap } from "lucide-react";
+import { MERCHANT_START_URL } from "@/lib/merchant";
 import {
   easeOutExpo,
   fadeUp,
   fadeUpSoft,
-  scaleIn,
   staggerContainer,
 } from "@/lib/motion";
 
-type Pointer = { x: number; y: number };
-
 const highlights = [
   {
-    value: "<1s",
-    label: "Identidad",
-    body: "Confirma quién es antes de cobrar o dar acceso.",
-    hint: null as string | null,
-    icon: Zap,
-  },
-  {
-    value: "1 gesto",
-    label: "Menos fricción",
-    body: "Pagar, entrar o registrarse sin pasos de más.",
+    value: "Sin fricción",
+    label: "En caja",
+    body: "Tu cliente no busca tarjeta ni teléfono. Acerca la palma y el cobro avanza.",
     hint: null as string | null,
     icon: Hand,
   },
   {
-    value: "LFPDPPP",
-    label: "Datos protegidos",
-    body: "Tu cliente da consentimiento y puede ejercer sus derechos.",
-    hint: "Ley mexicana de protección de datos personales",
-    icon: ShieldCheck,
+    value: "Más tickets",
+    label: "Menos filas",
+    body: "Cobras en segundos. Menos espera, más mesa libre, más venta al día.",
+    hint: null as string | null,
+    icon: Zap,
+  },
+  {
+    value: "Cliente fiel",
+    label: "Te reconoce",
+    body: "Vuelve y ya está identificado. Misma persona, pago listo — tu negocio lo siente.",
+    hint: null as string | null,
+    icon: Users,
   },
 ];
 
 export function Hero() {
   const reduce = useReducedMotion();
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const pointerRef = useRef<Pointer | null>(null);
-
-  useEffect(() => {
-    if (reduce) return;
-    const v = videoRef.current;
-    if (!v) return;
-    v.muted = true;
-    void v.play().catch(() => {
-      /* autoplay blocked */
-    });
-  }, [reduce]);
 
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-background"
-      onPointerMove={(e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        pointerRef.current = {
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top,
-        };
-      }}
-      onPointerLeave={() => {
-        pointerRef.current = null;
-      }}
+      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink"
     >
-      <div
-        className="pointer-events-none absolute inset-0"
-        aria-hidden
-        style={{
-          background: `
-            radial-gradient(ellipse 45% 40% at 20% 20%, rgba(34,197,94,0.07) 0%, transparent 55%),
-            radial-gradient(ellipse 40% 35% at 80% 15%, rgba(26,107,92,0.08) 0%, transparent 50%),
-            radial-gradient(ellipse 55% 45% at 70% 80%, rgba(34,197,94,0.05) 0%, transparent 55%)
-          `,
-        }}
-      />
-      <NoiseBg pointerRef={pointerRef} />
+      {/* Full-bleed: terminal real + palma en el negocio */}
+      <div className="absolute inset-0" aria-hidden>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/brand/veyra-hero-palm-pay.jpg"
+          alt=""
+          className="absolute inset-0 h-full w-full scale-105 object-cover object-[72%_center] md:object-[78%_center]"
+        />
+        {/* Scrim: legible copy left, photo open on the right */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              linear-gradient(90deg,
+                rgba(10,10,10,0.94) 0%,
+                rgba(10,10,10,0.82) 34%,
+                rgba(10,10,10,0.35) 58%,
+                rgba(10,10,10,0.18) 100%),
+              linear-gradient(180deg,
+                rgba(10,10,10,0.55) 0%,
+                transparent 28%,
+                transparent 62%,
+                rgba(10,10,10,0.88) 100%)
+            `,
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-30 mix-blend-soft-light"
+          style={{
+            background:
+              "radial-gradient(ellipse 50% 45% at 70% 45%, rgba(34,197,94,0.22) 0%, transparent 60%)",
+          }}
+        />
+      </div>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 items-center gap-10 px-5 pb-6 pt-28 md:grid-cols-2 md:gap-12 md:px-8 md:pb-8 md:pt-32 lg:gap-16 lg:pb-10">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-5 pb-10 pt-28 md:px-8 md:pb-12 md:pt-32">
         <motion.div
-          className="relative z-10 flex flex-col items-start text-left md:pb-8"
+          className="max-w-xl"
           variants={reduce ? undefined : staggerContainer}
           initial={reduce ? false : "hidden"}
           animate="show"
@@ -93,98 +88,48 @@ export function Hero() {
             variants={reduce ? undefined : fadeUp}
             className="font-mono text-[11px] tracking-[0.18em] text-accent-glow uppercase"
           >
-            Identidad para el mundo físico
+            Para tu negocio
           </motion.p>
 
           <motion.h1
             variants={reduce ? undefined : fadeUp}
-            className="mt-5 max-w-[15ch] font-display text-[2.65rem] font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-[3.35rem] lg:text-[3.85rem] xl:text-[4.15rem]"
+            className="mt-5 max-w-[14ch] font-display text-[2.65rem] font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-[3.4rem] lg:text-[3.9rem]"
           >
-            Tu palma{" "}
-            <span className="veyra-sweep-text">identifica</span>, confirma y
-            avanza.
+            Cobrar con la{" "}
+            <span className="veyra-sweep-text">palma</span>. Tecnología que
+            adquieres.
           </motion.h1>
 
           <motion.p
             variants={reduce ? undefined : fadeUp}
-            className="mt-6 max-w-md text-base leading-relaxed text-muted md:text-lg lg:text-xl"
+            className="mt-6 max-w-md text-base leading-relaxed text-foreground/75 md:text-lg lg:text-xl"
           >
-            Veyra reconoce a tu cliente y confirma lo que pidió en menos de un
-            segundo: cobrar, dar acceso o hacer check-in — con menos fricción
-            para tu operación.
+            Tu cliente paga con la palma. Tú compras la terminal y pagas una
+            mensualidad por el software — claro, sin letra chiquita de “renta”.
           </motion.p>
 
           <motion.div
             variants={reduce ? undefined : fadeUp}
             className="mt-10 flex flex-wrap items-center gap-3 md:mt-12"
           >
-            <a href={MERCHANT_URL} className="btn-primary px-8 py-3.5 text-sm md:px-9 md:py-4">
-              Inicia ya
+            <a
+              href={MERCHANT_START_URL}
+              className="btn-primary px-8 py-3.5 text-sm md:px-9 md:py-4"
+            >
+              Empezar
               <ArrowUpRight className="h-4 w-4" />
             </a>
-            <a href="#casos" className="btn-ghost px-7 py-3.5 text-sm md:px-8 md:py-4">
-              Ver casos de uso
+            <a
+              href="#planes"
+              className="btn-ghost border-white/20 px-7 py-3.5 text-sm text-foreground hover:border-white/40 md:px-8 md:py-4"
+            >
+              Ver inversión
             </a>
           </motion.div>
         </motion.div>
-
-        <motion.div
-          className="relative z-20 w-full self-center md:-mb-10 lg:-mb-14"
-          variants={reduce ? undefined : scaleIn}
-          initial={reduce ? false : "hidden"}
-          animate="show"
-        >
-          <div className="relative aspect-[4/3] w-full min-h-[280px] sm:min-h-[340px] md:aspect-[5/4] md:min-h-[420px] lg:min-h-[480px] xl:min-h-[520px]">
-            <div
-              className="pointer-events-none absolute -inset-12 hero-media-glow md:-inset-16"
-              aria-hidden
-            />
-            <div className="hero-video-stage relative h-full w-full overflow-hidden rounded-[1.25rem] md:rounded-[1.75rem]">
-              <div className="hero-video-media absolute inset-0 rounded-[1.25rem] md:rounded-[1.75rem]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/brand/veyra-checkout-palm.png"
-                  alt=""
-                  className="absolute inset-0 h-full w-full object-cover object-center"
-                />
-                {!reduce ? (
-                  <video
-                    ref={videoRef}
-                    className="absolute inset-0 h-full w-full scale-105 object-cover object-center hero-video-ken"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    poster="/brand/veyra-checkout-palm.png"
-                    aria-label="Terminal Veyra en acción"
-                  >
-                    <source src="/brand/veyra-hero-loop.mp4" type="video/mp4" />
-                  </video>
-                ) : null}
-              </div>
-              <div
-                className="pointer-events-none absolute inset-0 hero-video-wash rounded-[1.25rem] md:rounded-[1.75rem]"
-                aria-hidden
-              />
-              <div
-                className="pointer-events-none absolute inset-0 rounded-[1.25rem] ring-1 ring-white/10 md:rounded-[1.75rem]"
-                aria-hidden
-              />
-            </div>
-          </div>
-        </motion.div>
       </div>
 
-      <div className="relative z-10 mt-auto border-t border-white/5 bg-[#0e0e0e]/80 backdrop-blur-[2px]">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-40"
-          aria-hidden
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E\")",
-          }}
-        />
+      <div className="relative z-10 mt-auto border-t border-white/10 bg-black/55 backdrop-blur-md">
         <motion.div
           className="relative mx-auto flex max-w-7xl flex-col gap-0 px-5 py-8 md:flex-row md:items-stretch md:px-8 md:py-10"
           variants={reduce ? undefined : staggerContainer}
@@ -232,9 +177,9 @@ export function Hero() {
             transition={{ duration: 0.55, ease: easeOutExpo }}
           >
             <a
-              href="#casos"
+              href="#planes"
               className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white text-cta-foreground transition hover:scale-105 hover:bg-accent-glow"
-              aria-label="Ver casos de uso"
+              aria-label="Ver inversión"
             >
               <ArrowRight className="h-5 w-5" />
             </a>

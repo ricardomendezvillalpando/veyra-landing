@@ -1,8 +1,10 @@
+import { BuyerFaq } from "@/components/BuyerFaq";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Interest } from "@/components/Interest";
 import { Compliance } from "@/components/Compliance";
+import { FinalCta } from "@/components/FinalCta";
 import { Pricing } from "@/components/Pricing";
 import { PresenceLoop } from "@/components/PresenceLoop";
 import { Security } from "@/components/Security";
@@ -20,7 +22,9 @@ export default function Home() {
         <UseCases />
         <PresenceLoop />
         <Pricing />
+        <BuyerFaq />
         <Security />
+        <FinalCta />
         <Interest />
         <Compliance />
       </main>

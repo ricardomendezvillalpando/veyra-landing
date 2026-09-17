@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { MERCHANT_URL } from "@/lib/merchant";
+import { MERCHANT_START_URL } from "@/lib/merchant";
 
 export function FinalCta() {
   return (
@@ -15,15 +15,15 @@ export function FinalCta() {
       >
         <div className="max-w-lg">
           <h2 className="font-display text-2xl font-bold tracking-tight text-accent-foreground md:text-3xl">
-            Sé el negocio al que todos quieren volver.
+            Prueba la consola. Cuando listo, adquiere tu terminal.
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-accent-foreground/85 md:text-base">
-            Abre tu consola Veyra, configura productos y terminales, y mira
-            cómo acelera tu checkout en minutos — no en meses.
+            Mira la consola sin compromiso. Cuando quieras operar: terminal +
+            $699 + IVA al mes por el software.
           </p>
         </div>
-        <a href={MERCHANT_URL} className="btn-primary-on-accent shrink-0 px-7 py-3.5 text-sm">
-          Inicia ya
+        <a href={MERCHANT_START_URL} className="btn-primary-on-accent shrink-0 px-7 py-3.5 text-sm">
+          Empezar ahora
           <ArrowRight className="h-4 w-4" />
         </a>
       </motion.div>

@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MERCHANT_URL } from "@/lib/merchant";
+import { MERCHANT_START_URL } from "@/lib/merchant";
 
 const blocks = [
   {
     title: "Cobra sin fricción. Vende más.",
     body: "Cuando el cliente solo acerca la mano, la fila se mueve. Menos tiempo en caja, más capacidad en horas pico y una experiencia que invita a volver — y a recomendarte.",
-    image: "/brand/veyra-checkout-palm.png",
-    alt: "Mano sobre sensor biométrico en checkout",
+    image: "/brand/veyra-terminal-scene.jpg",
+    alt: "Terminal Veyra real — pago con palma",
     reverse: false,
   },
   {
@@ -22,8 +22,8 @@ const blocks = [
   {
     title: "De la puerta al mostrador, sin fricción.",
     body: "Misma presencia para entrar al gym, al club o al coworking y pagar en cafetería. Un enroll, menos costos operativos y un journey que captura y retiene clientes.",
-    image: "/brand/veyra-palm-scan.jpg",
-    alt: "Escaneo de palma para acceso",
+    image: "/brand/veyra-terminal.jpg",
+    alt: "Pago aprobado en terminal Veyra",
     reverse: false,
   },
 ];
@@ -50,7 +50,7 @@ export function FeatureStories() {
               <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">
                 {b.body}
               </p>
-              <a href={MERCHANT_URL} className="btn-primary mt-7 px-6 py-3 text-sm">
+              <a href={MERCHANT_START_URL} className="btn-primary mt-7 px-6 py-3 text-sm">
                 Inicia ya
               </a>
             </div>

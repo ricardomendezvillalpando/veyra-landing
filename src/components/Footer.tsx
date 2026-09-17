@@ -9,7 +9,8 @@ const columns = [
     links: [
       { href: "/#casos", label: "Casos de uso" },
       { href: "/#proceso", label: "Cómo funciona" },
-      { href: "/#planes", label: "Planes" },
+      { href: "/#planes", label: "Inversión" },
+      { href: "/#dudas", label: "Dudas" },
       { href: "/#seguridad", label: "Seguridad" },
     ],
   },
