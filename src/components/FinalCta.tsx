@@ -19,7 +19,7 @@ export function FinalCta() {
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-accent-foreground/85 md:text-base">
             Mira la consola sin compromiso. Cuando quieras operar: terminal +
-            $699 + IVA al mes por el software.
+            $800 + IVA al mes por el software.
           </p>
         </div>
         <a href={MERCHANT_START_URL} className="btn-primary-on-accent shrink-0 px-7 py-3.5 text-sm">

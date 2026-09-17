@@ -5,7 +5,8 @@ import { ArrowUpRight, Check } from "lucide-react";
 import { MERCHANT_START_URL } from "@/lib/merchant";
 
 /** Lead-facing prices — software siempre aparte del equipo. */
-const SOFTWARE_MONTH = "$699";
+const SOFTWARE_MONTH = "$800";
+const TERMINAL_MSI_MONTH = "$1,099";
 
 const plans = [
   {
@@ -28,7 +29,7 @@ const plans = [
   {
     id: "msi",
     name: "A meses",
-    price: "~$1,008",
+    price: TERMINAL_MSI_MONTH,
     period: " + IVA /mes · 12 meses",
     softwareNote: `+ ${SOFTWARE_MONTH} + IVA al mes · software`,
     badge: "Más elegido",
@@ -36,7 +37,7 @@ const plans = [
     desc: "La terminal se paga a 12 meses sin intereses con tu tarjeta. El software Veyra es una mensualidad aparte — igual que de contado.",
     features: [
       "Misma terminal que de contado",
-      "Aprox. $1,008 + IVA al mes × 12 (por la terminal)",
+      `${TERMINAL_MSI_MONTH} + IVA al mes × 12 (por la terminal)`,
       `${SOFTWARE_MONTH} + IVA al mes por el software Veyra`,
       "Empiezas con menos desembolso al inicio",
     ],

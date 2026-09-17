@@ -45,14 +45,14 @@ const sections: FaqSection[] = [
       },
       {
         q: "¿Siempre hay una mensualidad?",
-        a: "Sí. En todos los planes hay una suscripción de $699 + IVA al mes por terminal, mientras uses Veyra. Va aparte del pago de la terminal.",
+        a: "Sí. En todos los planes hay una suscripción de $800 + IVA al mes por terminal, mientras uses Veyra. Va aparte del pago de la terminal.",
       },
       {
         q: "¿Qué diferencia hay entre contado y a meses?",
-        a: "De contado pagas menos por la terminal ($10,490 + IVA). A meses la terminal se divide en ~12 pagos con tu tarjeta (~$1,008 + IVA al mes), más la misma suscripción de software. Misma máquina, mismo servicio.",
+        a: "De contado pagas menos por la terminal ($10,490 + IVA). A meses la terminal se divide en 12 pagos con tu tarjeta ($1,099 + IVA al mes), más la misma suscripción de software. Misma máquina, mismo servicio.",
       },
       {
-        q: "¿Qué incluye la mensualidad de $699?",
+        q: "¿Qué incluye la mensualidad de $800?",
         a: "Cobrar e identificar con la palma, la consola de tu negocio, la app para tus clientes, actualizaciones y soporte. No incluye el costo de la terminal.",
       },
       {
@@ -79,8 +79,8 @@ const sections: FaqSection[] = [
         a: "El cobro a tu cliente se procesa como un pago con tarjeta (la que ya vinculó en la app). Aplican las comisiones normales de procesamiento de pagos; te las mostramos con claridad al activar tu cuenta. No hay una “cuota oculta” aparte de lo que ya conoces al cobrar con tarjeta.",
       },
       {
-        q: "¿La mensualidad de $699 incluye las comisiones de las ventas?",
-        a: "No. Los $699 + IVA son el software y el servicio Veyra. Las comisiones de cada cobro son independientes, como en cualquier medio de pago electrónico.",
+        q: "¿La mensualidad de $800 incluye las comisiones de las ventas?",
+        a: "No. Los $800 + IVA son el software y el servicio Veyra. Las comisiones de cada cobro son independientes, como en cualquier medio de pago electrónico.",
       },
       {
         q: "¿Cuándo me llega el dinero de las ventas?",
